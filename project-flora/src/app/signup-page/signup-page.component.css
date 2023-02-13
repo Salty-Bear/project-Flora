@@ -5,7 +5,7 @@
     min-height: 100vh;
     background-color: #395144;
     background-size: cover;
-    backdrop-filter: url(assests/wallpaper.jpg#filter);
+    background-image: url(assests/wallpaper.jpg);
 }
 
 form {
