@@ -4,16 +4,13 @@
     align-items: center;
     min-height: 100vh;
     background-color: #395144;
+    background-size: cover;
+    backdrop-filter: url(assests/wallpaper.jpg#filter);
 }
 
 form {
-    background-color: azure;
-    padding: 10px;
     border-radius: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 2% 5% 2% 5%;
     background-color: #cfdad2;
 }
 

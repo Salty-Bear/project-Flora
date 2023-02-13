@@ -12,8 +12,6 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupPageComponent }
 ]
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
