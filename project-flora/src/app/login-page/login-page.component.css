@@ -1,10 +1,33 @@
 .container-md{
     margin-top: 5%;
-    background-color: #1C6758;
+    background-color: #cfdad2;;
     width: 60%;
-    backdrop-filter: blur(8px);
+    border-radius: 2%;
 }
 
 .lel{
-    margin-top: 50%;
+    margin-top: 30%;
 }
+
+.fancy{
+    font-size: 8rem;
+    font-family: sofia;
+    animation: animate 5s linear infinite;
+}
+
+@keyframes animate{
+    0%,100%
+    {
+        color: #3D8361;
+        text-shadow: none;
+    }
+    50%,100%
+    {
+        color:floralwhite;
+        text-shadow: 0 0 10px #1C6758,
+        0 0 20px #1C6758,
+        0 0 40px #1C6758,
+        0 0 80px #1C6758,
+        0 0 120x #1C6758;
+    }
+    }
