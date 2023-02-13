@@ -1,0 +1,22 @@
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #395144;
+}
+
+form {
+    background-color: azure;
+    padding: 10px;
+    border-radius: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #cfdad2;
+}
+
+label {
+    font-size: medium;
+}
