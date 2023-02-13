@@ -6,6 +6,7 @@
     background-color: #395144;
     background-size: cover;
     background-image: url(assests/wallpaper.jpg);
+
 }
 
 form {
@@ -16,4 +17,14 @@ form {
 
 label {
     font-size: medium;
+}
+
+button {
+    background-color: #cfdad2;
+    border-radius: 5px;
+    border: 1px solid #3D8361;
+}
+
+button:hover {
+    background-color: #3D8361;
 }
