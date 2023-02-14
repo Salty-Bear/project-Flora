@@ -3,6 +3,10 @@
     background-color: #cfdad2;;
     width: 60%;
     border-radius: 2%;
+    padding-left: 0px;
+}
+.col{
+    padding: 0%;
 }
 
 .lel{
@@ -12,7 +16,10 @@
 .fancy{
     font-size: 8rem;
     font-family: sofia;
+    -webkit-box-reflect: below -30px linear-gradient(transparent,#0004);
     animation: animate 5s linear infinite;
+    line-height: 100%;
+    outline: none;
 }
 
 @keyframes animate{
@@ -27,7 +34,7 @@
         text-shadow: 0 0 10px #1C6758,
         0 0 20px #1C6758,
         0 0 40px #1C6758,
-        0 0 80px #1C6758,
-        0 0 120x #1C6758;
+        0 0 100px #1C6758,
+        0 0 160x #1C6758;
     }
     }
