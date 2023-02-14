@@ -16,12 +16,12 @@
 }
 
 @keyframes animate{
-    0%,100%
+    100%,50%
     {
         color: #3D8361;
         text-shadow: none;
     }
-    50%,100%
+    0%,100%
     {
         color:floralwhite;
         text-shadow: 0 0 10px #1C6758,
