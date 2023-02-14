@@ -8,9 +8,22 @@
 .col{
     padding: 0%;
 }
+.c-1{
+    width: 20%;
+}
+
+.foto{
+    border-radius: 2%;
+}
+
 
 .lel{
     margin-top: 30%;
+}
+.carouselle{
+    width: 30%;
+    height: 100%;
+    position:absolute;
 }
 
 .fancy{

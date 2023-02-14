@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
-
+  images = ['assets/ok.jpg','assets/ok1.png','assets/ok2.jpg']
 }
