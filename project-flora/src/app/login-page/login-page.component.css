@@ -16,6 +16,11 @@
     border-radius: 2%;
 }
 
+label{
+  font-family: sofia;
+  padding-left: 4%;
+}
+
 
 .lel{
     margin-top: 30%;
@@ -51,3 +56,42 @@
         0 0 160x #1C6758;
     }
     }
+
+
+    .css-button-sliding-to-left--green {
+        margin-left: 10%;
+        margin-right: 10%;
+        min-width: 130px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border-radius: 5px;
+        z-index: 0;
+        background: #fff;
+        overflow: hidden;
+        border: 2px solid #57cc99;
+        color: #57cc99;
+      }
+      .css-button-sliding-to-left--green:hover {
+        color: #fff;
+      }
+      .css-button-sliding-to-left--green:hover:after {
+        width: 100%;
+      }
+      .css-button-sliding-to-left--green:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        transition: all 0.3s ease;
+        right: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background: #57cc99;
+      }
