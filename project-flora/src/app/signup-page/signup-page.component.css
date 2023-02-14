@@ -6,19 +6,22 @@
 }
 
 h1 {
-    font-family: Sofia;
+    font-family: Sofia, Roboto;
     text-align: center;
     font-size: 4rem;
+    color: #1C6758;
 }
 
 form {
-    border-radius: 20px;
-    padding: 2% 5% 2% 5%;
+    border-radius: 1%;
+    padding: 2% 3% 2% 3%;
     background-color: #cfdad2;
 }
 
 label {
-    font-size: medium;
+    font-size: 1rem;
+    font-family: Roboto;
+    font-weight: 400;
 }
 
 .css-button-sliding-to-left--green {
@@ -36,8 +39,8 @@ label {
     z-index: 0;
     background: #fff;
     overflow: hidden;
-    border: 2px solid #57cc99;
-    color: #57cc99;
+    border: 2px solid #3D8361;
+    color: #3D8361;
 }
 
 .css-button-sliding-to-left--green:hover {
@@ -57,5 +60,5 @@ label {
     top: 0;
     width: 0;
     height: 100%;
-    background: #57cc99;
+    background: #3D8361;
 }
