@@ -18,6 +18,7 @@
 
 label{
   font-family: sofia;
+  font-weight: 800;
   padding-left: 4%;
 }
 
@@ -32,6 +33,7 @@ label{
 }
 
 .fancy{
+    margin-top: 5%;
     font-size: 8rem;
     font-family: sofia;
     -webkit-box-reflect: below -30px linear-gradient(transparent,#0004);
@@ -75,8 +77,8 @@ label{
         z-index: 0;
         background: #fff;
         overflow: hidden;
-        border: 2px solid #57cc99;
-        color: #57cc99;
+        border: 2px solid #1C6758;
+        color: #1C6758;
       }
       .css-button-sliding-to-left--green:hover {
         color: #fff;
@@ -93,5 +95,5 @@ label{
         top: 0;
         width: 0;
         height: 100%;
-        background: #57cc99;
+        background: #1C6758;
       }
