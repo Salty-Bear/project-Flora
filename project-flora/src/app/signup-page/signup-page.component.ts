@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Signup } from './signup.model';
 
 @Component({
   selector: 'app-signup-page',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./signup-page.component.css']
 })
 export class SignupPageComponent {
-
+  signup: Signup = new Signup('Ayush', 'Kumar', 'Salty Hulk', 'idono@okok.com', 'pass');
 }
