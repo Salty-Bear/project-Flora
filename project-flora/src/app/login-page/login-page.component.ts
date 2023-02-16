@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-login-page',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class LoginPageComponent {
   images = ['assets/ok.jpg','assets/ok1.png','assets/ok2.jpg']
+
 }
