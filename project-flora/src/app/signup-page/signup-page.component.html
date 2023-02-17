@@ -5,7 +5,7 @@
         <hr class="mb-2">
         <div class="mb-2 mt-3">
             <label for="f_name" class="form-label">First Name</label>
-            <input type="text"  class="form-control form-control-sm" id="f_name" placeholder="Salty" name="firstname" [(ngModel)]="f_name" required>
+            <input type="text"  class="form-control form-control-sm" id="f_name" placeholder="Salty" name="firstname" [(ngModel)]="f_name" >
         </div>
         <div class="mb-2">
             <label for="l_name" class="form-label">Last Name </label>
@@ -17,7 +17,7 @@
         </div>
         <div class="mb-2">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control  form-control-sm" id="email" placeholder="name@example.com" name="email" [(ngModel)]="email">
+            <input type="email" class="form-control  form-control-sm" id="email" placeholder="name@example.com" name="email" [(ngModel)]="email" required email>
         </div>
         <div class="mb-2">
             <label for="password" class="form-label">Password</label>

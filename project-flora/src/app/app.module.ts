@@ -9,7 +9,6 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -20,8 +19,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginPageComponent,
-    SignupPageComponent,
-    AuthComponent
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,
