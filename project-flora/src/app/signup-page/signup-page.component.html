@@ -14,7 +14,7 @@
         <div class="mb-2">
             <label for="u_name" class="form-label">Username</label>
             <input type="text" class="form-control  form-control-sm" id="u_name" placeholder="A COOL NAME" name="username" [(ngModel)]="u_name" required>
-        </div>
+        </div> 
         <div class="mb-2">
             <label for="email" class="form-label">Email address</label>
             <input type="email" class="form-control  form-control-sm" id="email" placeholder="name@example.com" name="email" [(ngModel)]="email" email required>
@@ -28,7 +28,7 @@
             <input type="password" class="form-control  form-control-sm" id="password_check" placeholder="">
         </div>
         <div class="mb-2">
-            <button type="submit" class="css-button-sliding-to-left--green mt-2"  (click)="post()" [routerLink]="['/']" [disabled]="!f.valid">Floral !!!</button>
+            <button type="submit" class="css-button-sliding-to-left--green mt-2"  (click)="post()" [routerLink]="['/']" [disabled]=(!authForm.valid) >Floral !!! </button>
         </div>
     </form>
 </div>
