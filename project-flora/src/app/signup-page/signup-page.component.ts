@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Signup } from '../signup-page/signup.model';
-import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-signup-page',
