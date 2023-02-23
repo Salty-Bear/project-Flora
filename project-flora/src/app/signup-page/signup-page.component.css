@@ -62,3 +62,16 @@ label {
     height: 100%;
     background: #3D8361;
 }
+
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+
+.error{
+    background-color: #FD8A8A;
+    font-family: roboto;
+    border-radius: 10%;
+
+}

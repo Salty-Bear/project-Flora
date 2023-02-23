@@ -9,17 +9,20 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MainComponent } from './main/main.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
-  { path: 'signup', component: SignupPageComponent }
+  { path: 'signup', component: SignupPageComponent },
+  { path: 'main', component: MainComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

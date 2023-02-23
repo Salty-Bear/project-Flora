@@ -8,5 +8,10 @@ import { Component, inject, Input } from '@angular/core';
 })
 export class LoginPageComponent {
   images = ['assets/ok.jpg','assets/ok1.png','assets/ok2.jpg']
+  email='';
+  password='';
 
+  retrieve(){
+
+  }
 }

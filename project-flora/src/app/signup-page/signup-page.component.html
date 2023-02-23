@@ -4,6 +4,7 @@
         <h1>Flora</h1>
         <hr class="mb-2">
         <div class="mb-2 mt-3">
+            <p class="error" *ngIf="">Sorry, your given info was incorrect. Please double-check.</p>
             <label for="f_name" class="form-label">First Name</label>
             <input type="text"  class="form-control form-control-sm" id="f_name" placeholder="Salty" name="firstname" [(ngModel)]="f_name" required>
         </div>
