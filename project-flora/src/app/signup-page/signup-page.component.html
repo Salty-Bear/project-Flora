@@ -4,7 +4,6 @@
         <h1>Flora</h1>
         <hr class="mb-2">
         <div class="mb-2 mt-3">
-            <p class="error" *ngIf="">Sorry, your given info was incorrect. Please double-check.</p>
             <label for="f_name" class="form-label">First Name</label>
             <input type="text"  class="form-control form-control-sm" id="f_name" placeholder="Salty" name="firstname" [(ngModel)]="f_name" required>
         </div>
@@ -17,19 +16,20 @@
             <input type="text" class="form-control  form-control-sm" id="u_name" placeholder="A COOL NAME" name="username" [(ngModel)]="u_name" required>
         </div> 
         <div class="mb-2">
-            <label for="email" class="form-label">Email address</label>
+            <label for="email" class="form-label">Email address <div class="error mb-0" *ngIf=" errorMessage == 'EMAIL_EXISTS' ">Email address already exists!</div></label> 
             <input type="email" class="form-control  form-control-sm" id="email" placeholder="name@example.com" name="email" [(ngModel)]="email" email required>
         </div>
         <div class="mb-2">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control  form-control-sm" id="password" placeholder="" name="password" [(ngModel)]="password" required>
+            <label for="password" class="form-label">Password <div class="error mb-0" *ngIf=" errorMessage == 'WEAK_PASSWORD : Password should be at least 6 characters' ">Password's length should be greater than 5</div></label>
+            <input type="password" class="form-control  form-control-sm" id="password" name="password" [(ngModel)]="password" required>
         </div>
         <div class="mb-2">
             <label for="password_check" class="form-label">Re-enter password</label>
-            <input type="password" class="form-control  form-control-sm" id="password_check" placeholder="">
+            <input type="password" class="form-control  form-control-sm" id="password_check" required>
         </div>
         <div class="mb-2">
-            <button type="submit" class="css-button-sliding-to-left--green mt-2"  (click)="post()" [routerLink]="['/']" [disabled]=(!authForm.valid) >Floral !!! </button>
+            <div class="error" *ngIf=" errorMessage == 'UNKNOWN_ERROR' ">An unexpected error occurred!!</div>
+            <button type="submit" class="css-button-sliding-to-left--green mt-2" (click)="post()"  [routerLink]="['/']"  [disabled]=(!authForm.valid) >Floral !!! </button>
         </div>
     </form>
 </div>

@@ -68,10 +68,9 @@ input.ng-invalid.ng-touched{
     border: 1px solid red;
 }
 
-
 .error{
-    background-color: #FD8A8A;
     font-family: roboto;
-    border-radius: 10%;
-
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: red;
 }
