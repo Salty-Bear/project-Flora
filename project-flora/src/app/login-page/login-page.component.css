@@ -42,6 +42,11 @@ label{
     outline: none;
 }
 
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+
 @keyframes animate{
     100%,50%
     {
