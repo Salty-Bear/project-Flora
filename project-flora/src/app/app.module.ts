@@ -10,7 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
-import { FriendspanelComponent } from './src/app/main/friendspanel/friendspanel.component';
 import { ChatComponent } from './main/chat/chat.component';
 import { SettingsComponent } from './main/settings/settings.component';
 import { LetterComponent } from './main/letter/letter.component';
@@ -28,7 +27,6 @@ const appRoutes: Routes = [
     LoginPageComponent,
     SignupPageComponent,
     MainComponent,
-    FriendspanelComponent,
     ChatComponent,
     SettingsComponent,
     LetterComponent,
