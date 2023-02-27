@@ -1,6 +1,7 @@
 <div>
     <div class="container-md">
             <div >
+                <div></div>
                 <div class="container text-center">
                     <div class="row">
                     <div class="col c-1">
@@ -51,7 +52,7 @@
                                 <input type="password" class="form-control" id="inputPassword3" [(ngModel)]="password" name="password" required>
                             </div>
                             </div>
-                            <button type="submit" class="css-button-sliding-to-left--green"  [disabled]=(!Auth.valid) (click)="retrieve()">Login</button>   
+                            <button type="submit" class="css-button-sliding-to-left--green" [routerLink]="['/main'] " [disabled]=(!Auth.valid) (click)="retrieve()">Login</button>   
                             <button type="submit" class="css-button-sliding-to-left--green" [routerLink]="['/signup']" >Signup</button>
                             <div class="error mt-3" *ngIf="errorMessage == 'COMMON_ERROR'">Sorry, your email or password was incorrect.</div>
                             <div class="error mt-3" *ngIf="errorMessage == 'UNKNOWN_ERROR'">An unexpected error occurred!!</div>

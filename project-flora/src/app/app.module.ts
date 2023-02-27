@@ -14,6 +14,7 @@ import { ChatComponent } from './main/chat/chat.component';
 import { SettingsComponent } from './main/settings/settings.component';
 import { LetterComponent } from './main/letter/letter.component';
 import { MyLettersComponent } from './main/my-letters/my-letters.component';
+import { AboutComponent } from './main/about/about.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     ChatComponent,
     SettingsComponent,
     LetterComponent,
-    MyLettersComponent
+    MyLettersComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
