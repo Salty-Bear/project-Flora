@@ -5,9 +5,11 @@
     border-radius: 2%;
     padding-left: 0px;
 }
+
 .col{
     padding: 0%;
 }
+
 .c-1{
     width: 20%;
 }
@@ -21,7 +23,6 @@ label{
   font-weight: 800;
   padding-left: 4%;
 }
-
 
 .lel{
     margin-top: 30%;
@@ -62,43 +63,52 @@ input.ng-invalid.ng-touched{
         0 0 100px #1C6758,
         0 0 160x #1C6758;
     }
-    }
+}
 
+.css-button-sliding-to-left--green {
+    margin-left: 10%;
+    margin-right: 10%;
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #1C6758;
+    color: #1C6758;
+}
+      
+.css-button-sliding-to-left--green:hover {
+    color: #fff;
+}
 
-    .css-button-sliding-to-left--green {
-        margin-left: 10%;
-        margin-right: 10%;
-        min-width: 130px;
-        height: 40px;
-        color: #fff;
-        padding: 5px 10px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        position: relative;
-        display: inline-block;
-        outline: none;
-        border-radius: 5px;
-        z-index: 0;
-        background: #fff;
-        overflow: hidden;
-        border: 2px solid #1C6758;
-        color: #1C6758;
-      }
-      .css-button-sliding-to-left--green:hover {
-        color: #fff;
-      }
-      .css-button-sliding-to-left--green:hover:after {
-        width: 100%;
-      }
-      .css-button-sliding-to-left--green:after {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        transition: all 0.3s ease;
-        right: 0;
-        top: 0;
-        width: 0;
-        height: 100%;
-        background: #1C6758;
-      }
+.css-button-sliding-to-left--green:hover:after {
+    width: 100%;
+}
+
+.css-button-sliding-to-left--green:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #1C6758;
+}
+
+.error{
+    font-family: roboto;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: red;
+}

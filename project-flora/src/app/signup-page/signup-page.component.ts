@@ -12,16 +12,19 @@ export class SignupPageComponent {
 
   page: string='/signup';
 
+
   f_name: string=''; //first name
   l_name: string=''; //last name
   u_name: string=''; //user_name
   email: string=''; //email
   password: string=''; // password
   errorMessage: any = null;
+
   constructor(private http: HttpClient){}
+
   signup : Signup =new Signup(this.f_name,this.l_name,this.u_name,this.email,this.password);
+  
   post(){
-    console.log("ok");
     this.signup=new Signup(this.f_name,this.l_name,this.u_name,this.email,this.password);
     this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
       {email: this.signup.email, password: this.signup.pass, returnSecureToken: true}
