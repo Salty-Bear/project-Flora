@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Signup } from '../signup-page/signup.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-page',
@@ -8,6 +9,9 @@ import { Signup } from '../signup-page/signup.model';
   styleUrls: ['./signup-page.component.css']
 })
 export class SignupPageComponent {
+
+  page: string='/signup';
+
 
   f_name: string=''; //first name
   l_name: string=''; //last name
@@ -34,7 +38,8 @@ export class SignupPageComponent {
     subscribe(
       resData => { 
         console.log(resData);
-        alert("Signed in! Successfully");
+        this.page="/";
+        alert("Signed up! Successfully");
         this.http.post('https://flora-fbf5b-default-rtdb.firebaseio.com/posts.json',this.signup).subscribe(responseData =>{console.log(responseData)});
       }, 
       errorRes =>{
