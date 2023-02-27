@@ -1,11 +1,9 @@
-
 *{
     margin: 0%;
     padding: 0;
     list-style: none;
     text-decoration: none;
 }
-
 
 .sidebar{
     position: fixed;
@@ -16,7 +14,6 @@
     border-top-right-radius:2% ;
     border-top-left-radius: 2%;
 }
-
 
 .btn-outline-success{
     text-transform: uppercase;
@@ -63,8 +60,6 @@
     border-top-right-radius:2% ;
     background-image: linear-gradient(rgba(183,236,184,1) 21%, rgba(183,236,184,1) 47%, rgba(207,218,210,1) 100%);
 }
-
-
 
 .pfp{
     position: absolute;
