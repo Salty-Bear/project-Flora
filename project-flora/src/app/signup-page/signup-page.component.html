@@ -29,7 +29,7 @@
         </div>
         <div class="mb-2">
             <div class="error" *ngIf=" errorMessage == 'UNKNOWN_ERROR' ">An unexpected error occurred!!</div>
-            <button type="submit" class="css-button-sliding-to-left--green mt-2" (click)="post()"  [routerLink]="['/']"  [disabled]=(!authForm.valid) >Floral !!! </button>
+            <button type="submit" class="css-button-sliding-to-left--green mt-2" (click)="post()"   routerLink='{{page}}' [disabled]=(!authForm.valid) >Floral !!! </button>
         </div>
     </form>
 </div>
