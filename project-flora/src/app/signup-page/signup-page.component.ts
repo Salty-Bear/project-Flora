@@ -12,9 +12,15 @@ export class SignupPageComponent {
   f_name: string=''; //first name
   l_name: string=''; //last name
   u_name: string=''; //user_name
-  email: string=''; //email
-  password: string=''; // password
+  email: string=''; //email address
+  password: string=''; //password
+  rePassword: string=''; //re-enter password
+  passCheck: boolean=false;
   errorMessage: any = null;
+
+  if() {
+
+  }
 
   constructor(private http: HttpClient){}
 

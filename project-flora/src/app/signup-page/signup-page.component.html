@@ -25,11 +25,11 @@
         </div>
         <div class="mb-2">
             <label for="password_check" class="form-label">Re-enter password</label>
-            <input type="password" class="form-control  form-control-sm" id="password_check" required>
+            <input type="password" class="form-control  form-control-sm" id="password_check" name="rePassword" [(ngModel)]="rePassword" required>
         </div>
         <div class="mb-2">
             <div class="error" *ngIf=" errorMessage == 'UNKNOWN_ERROR' ">An unexpected error occurred!!</div>
-            <button type="submit" class="css-button-sliding-to-left--green mt-2" (click)="post()"  [routerLink]="['/']"  [disabled]=(!authForm.valid) >Floral !!! </button>
+            <button type="submit" class="css-button-sliding-to-left--green mt-2" (click)="post()" [routerLink]="['/']" [disabled]=(!authForm.valid) >Floral !!! </button>
         </div>
     </form>
 </div>
