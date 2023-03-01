@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 
+
+const config = {
+  apiKey: 'AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
+  databaseURL: 'https://flora-fbf5b-default-rtdb.firebaseio.com'
+};
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +14,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project-flora';
+
+
 }

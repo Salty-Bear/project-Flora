@@ -15,6 +15,13 @@ import { SettingsComponent } from './main/settings/settings.component';
 import { LetterComponent } from './main/letter/letter.component';
 import { MyLettersComponent } from './main/my-letters/my-letters.component';
 import { AboutComponent } from './main/about/about.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideMessaging,getMessaging } from '@angular/fire/messaging';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -40,7 +47,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideMessaging(() => getMessaging()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]
