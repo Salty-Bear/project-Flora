@@ -98,6 +98,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "project-flora:build:production",
+            "firebaseProject": "flora-fbf5b",
+            "firebaseHostingSite": "flora-fbf5b"
+          }
         }
       }
     }
