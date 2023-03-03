@@ -34,7 +34,7 @@
             </li>
         </ul> 
     </div>
-    <div class="parent-component" [ngSwitch]="usertype">
+    <div class="parent-component app" [ngSwitch]="usertype">
         <app-about *ngSwitchCase="'about'"></app-about>
         <app-settings *ngSwitchCase="'settings'"></app-settings>
         <app-my-letters *ngSwitchCase="'my-letters'"></app-my-letters>
