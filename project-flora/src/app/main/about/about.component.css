@@ -1,9 +1,25 @@
-/* * {
+* {
     border: 1px solid red;
-} */
+}
 
 .container-fluid {
     background-color: #cfdad2;
     min-height: 97vh;
     border-radius: 2%;
+    display: grid;
+    grid-template: 0.7fr 1fr/1fr 2fr;
+}
+
+.user-info {
+    grid-column: 1/3;
+}
+
+.pfp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bio {
+
 }
