@@ -26,6 +26,7 @@ import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     LetterComponent,
     MyLettersComponent,
-    AboutComponent
+    AboutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
