@@ -7,12 +7,16 @@
     min-height: 97vh;
     border-radius: 2%;
     padding: 10rem;
-    padding-top: 5rem;
+    padding-top: 1rem;
+}
+
+h1 {
+    font-family: 'Sofia';
 }
 
 .container {
     display: flex;
-    gap: 7rem;
+    gap: 5rem;
 }
 
 .name-info {
@@ -22,22 +26,71 @@
     padding-top: 1rem;
 }
 
-.r-name > p {
+.name {
+    display: grid;
+    grid-template: 1fr 1fr/ 1fr 1fr;
+}
+
+.name > p {
+    margin: 0;
+    padding: 0;
+}
+
+.u-name {
+    font-family: 'Tilt Neon';
+    font-size: medium;
+    font-weight: 100;
+}
+
+.r-name {
     font-family: 'Tilt Neon';
     font-size: larger;
+    grid-row: 2/3;
+}
+
+.bold {
+    font-family: 'Tilt Neon';
+    font-weight: 1000;
+}
+
+.bio {
+    font-size: 1vw;
+}
+
+.btn-upload {
+    border-radius: 7%;
+    font-size: large;
+    font-family: 'Tilt Neon';
 
 }
 
+<<<<<<< HEAD
 .user-info {
     grid-column: 1/3;
 }
 
 .pfp {
+=======
+.hr-sect {
+>>>>>>> fda5c37265ed0ec5c0f1118cbf73a915d959babb
     display: flex;
+    flex-basis: 100%;
     align-items: center;
-    justify-content: center;
+    color: rgba(0, 0, 0, 0.35);
+    margin: 8px 0px;
 }
 
+<<<<<<< HEAD
 .bio {
 
+=======
+.hr-sect:before, .hr-sect:after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 8px;
+>>>>>>> fda5c37265ed0ec5c0f1118cbf73a915d959babb
 }
