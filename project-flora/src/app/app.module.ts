@@ -22,6 +22,10 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
+import { provideFunctions,getFunctions } from '@angular/fire/functions';
+import { providePerformance,getPerformance } from '@angular/fire/performance';
+import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -53,9 +57,15 @@ const appRoutes: Routes = [
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    provideAnalytics(() => getAnalytics()),
+    provideFunctions(() => getFunctions()),
+    providePerformance(() => getPerformance()),
+    provideRemoteConfig(() => getRemoteConfig())
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService,UserTrackingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

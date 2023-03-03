@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "flora-fbf5b"
+  },
+  "targets": {
+    "flora-fbf5b": {
+      "hosting": {
+        "project-flora": [
+          "flora-fbf5b"
+        ]
+      }
+    }
   }
 }

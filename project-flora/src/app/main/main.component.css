@@ -1,11 +1,10 @@
-
 *{
     margin: 0%;
     padding: 0;
     list-style: none;
     text-decoration: none;
+    box-sizing: border-box;
 }
-
 
 .sidebar{
     position: fixed;
@@ -16,7 +15,6 @@
     border-top-right-radius:2% ;
     border-top-left-radius: 2%;
 }
-
 
 .btn-outline-success{
     text-transform: uppercase;
@@ -44,11 +42,9 @@
     width: 100%;
 }
 
-
 .fa-solid{
     font-size: 70%;
 }
-
 
 .brand{
     font-family: sofia;
@@ -62,8 +58,6 @@
     border-top-right-radius:2% ;
     background-image: linear-gradient(rgba(183,236,184,1) 21%, rgba(183,236,184,1) 47%, rgba(207,218,210,1) 100%);
 }
-
-
 
 .pfp{
     position: absolute;
@@ -94,4 +88,12 @@
     font-family: sofia;
     -webkit-box-reflect: below -30px linear-gradient(transparent,#0004);
     outline: none;
+}
+
+.app {
+    position: absolute;
+    left: 18%;    
+    min-height: 100vh;
+    width: 81%;
+    padding-top: 0.7rem;
 }
