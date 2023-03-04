@@ -1,7 +1,42 @@
+/* * {
+    border: 1px solid red;
+} */
+
 .container-fluid {
     background-color: #cfdad2;
     min-height: 97vh;
     border-radius: 15px;
-    padding: 10rem;
-    padding-top: 1rem;
+    max-height: 90vh;
+    padding-left: 0;
+    display: grid;
+    grid-template: 1fr/1fr 1fr;
+}
+
+.img-fluid{
+    object-fit: cover;
+    border-top-left-radius: 2%;
+    border-bottom-left-radius: 2%;
+    width: 100%;
+    height: 88%;
+}
+
+.letter {
+    display: flex;
+    padding: 10px;
+    gap: 3%;
+}
+
+.fancy {
+    text-align: center;
+    font-size: xx-large;
+    font-family: 'Sofia';
+}
+
+p {
+    margin: 0;
+    padding: 0; 
+}
+
+img {
+    width: 10%;
 }

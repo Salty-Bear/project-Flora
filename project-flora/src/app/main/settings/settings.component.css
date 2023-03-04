@@ -2,14 +2,12 @@
     background-color: #cfdad2;
     min-height: 97vh;
     border-radius: 15px;
-    grid-template: 1fr 1fr/1fr 2fr;
     max-height: 90vh;
     padding-right: 0px;
     display: grid;
     grid-template: 1fr/1fr 1fr;
     gap: 1%;
 }
-
 
 .fancy{
     color: #3D8361;
@@ -22,10 +20,6 @@
     outline: none;
 }
 
-
-
-
-
 .container.text-center{
     height: 100%;
 }
@@ -37,6 +31,7 @@
     width: 100%;
     height: 89%;
 }
+
 .form-control{
     padding-right: 2%;
     padding-top: 0px;
