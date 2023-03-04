@@ -1,7 +1,37 @@
+
+
+
 .container-fluid {
     background-color: #cfdad2;
     min-height: 97vh;
     border-radius: 2%;
-    display: grid;
     grid-template: 1fr 1fr/1fr 2fr;
+    max-height: 90vh;
+    padding-right: 0px;
+}
+
+
+.fancy{
+    color: #3D8361;
+    /* border-top: 1px solid rgba(0,0,0,0.08); */
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5%;
+    font-family: sofia;
+    -webkit-box-reflect: below -30px linear-gradient(transparent,#0004);
+    outline: none;
+}
+
+
+
+.img-thumbnail{
+    position:inherit;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+
+}
+
+.col second{
+    padding-right: 0px;
 }
