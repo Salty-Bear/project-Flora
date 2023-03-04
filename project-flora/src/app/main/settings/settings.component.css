@@ -1,10 +1,7 @@
-
-
-
 .container-fluid {
     background-color: #cfdad2;
     min-height: 97vh;
-    border-radius: 2%;
+    border-radius: 15px;
     grid-template: 1fr 1fr/1fr 2fr;
     max-height: 90vh;
     padding-right: 0px;

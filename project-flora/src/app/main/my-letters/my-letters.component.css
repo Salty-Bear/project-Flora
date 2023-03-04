@@ -1,0 +1,7 @@
+.container-fluid {
+    background-color: #cfdad2;
+    min-height: 97vh;
+    border-radius: 15px;
+    padding: 10rem;
+    padding-top: 1rem;
+}
