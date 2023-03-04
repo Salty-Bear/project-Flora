@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  usertype:any;
+  usertype:any='Home';
 }
