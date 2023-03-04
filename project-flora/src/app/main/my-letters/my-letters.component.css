@@ -1,15 +1,12 @@
-/* * {
-    border: 1px solid red;
-} */
-
 .container-fluid {
     background-color: #cfdad2;
-    min-height: 97vh;
+    min-height: 90vh;
     border-radius: 15px;
-    max-height: 90vh;
+    max-height: 97vh;
     padding-left: 0;
     display: grid;
     grid-template: 1fr/1fr 1fr;
+    gap: 1%;
 }
 
 .img-fluid{
@@ -17,7 +14,13 @@
     border-top-left-radius: 2%;
     border-bottom-left-radius: 2%;
     width: 100%;
-    height: 88%;
+    height: 89%;
+}
+
+.side-right {
+    background-color: rgb(251,213,164);
+    max-height: 95vh;
+    padding: 1% 10% 1% 10%;
 }
 
 .letter {
@@ -39,4 +42,9 @@ p {
 
 img {
     width: 10%;
+}
+
+.duration {
+    position: absolute;
+    right: 5%;
 }
