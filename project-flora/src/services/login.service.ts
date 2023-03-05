@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../app/models/user.model';
 import { catchError } from 'rxjs/operators';
 import { throwError,Subject, BehaviorSubject } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import { throwError,Subject, BehaviorSubject } from 'rxjs';
 export class LoginService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router:Router) { }
   isUserLoggedIn = new BehaviorSubject<boolean>(false);
 
 
@@ -28,9 +28,9 @@ export class LoginService {
   login(email: string,pass:string){
     this.isUserLoggedIn.next(true);
     return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
-    {email:email,
-    password:pass,
-    returnSecureToken:true
-   })
-}
+    { email:email,
+      password:pass,
+      returnSecureToken:true
+    })
+  }
 }
