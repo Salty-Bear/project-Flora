@@ -69,8 +69,8 @@ input.ng-invalid.ng-touched{
 }
 
 .error{
-    font-family: roboto;
+    font-family: Tilt Neon;
     font-size: 0.9rem;
-    font-weight: 300;
+    font-weight: 400;
     color: red;
 }

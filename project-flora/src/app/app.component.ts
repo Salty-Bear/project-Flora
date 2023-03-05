@@ -16,4 +16,15 @@ export class AppComponent {
   title = 'project-flora';
 
 
+
+  loader=true; //initialising loader variable for loading animation trigger
+
+
+
+ngonInit():void{
+  //loader variable set to false after page loads
+  setTimeout(() => {
+    this.loader =false;
+  }, 3000);
+}
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Signup } from '../signup-page/signup.model';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { LoginService } from 'src/services/login.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -9,60 +11,55 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup-page.component.css']
 })
 export class SignupPageComponent {
+  isLoginMode = true;
+  errorMessage: string;
+  f_name: string;
+  l_name: string;
+  u_name: string;
+  email: string;
+  password: string;
+  rePassword: string;
 
-  page: string='/signup';
+  constructor(private loginService: LoginService,private router: Router){}
 
 
-  f_name: string=''; //first name
-  l_name: string=''; //last name
-  u_name: string=''; //user_name
-  email: string=''; //email address
-  password: string=''; //password
-  rePassword: string=''; //re-enter password
-  passCheck: boolean=false;
-  errorMessage: any = null;
+  onSubmit(form: NgForm){
+    const email=form.value.email;
+    const password =  form.value.password;
 
-  if() {
-
-  }
-
-  constructor(private http: HttpClient){}
-
-  signup : Signup =new Signup(this.f_name,this.l_name,this.u_name,this.email,this.password);
-  
-  post(){
-    this.signup=new Signup(this.f_name,this.l_name,this.u_name,this.email,this.password);
-    this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
-      {email: this.signup.email, password: this.signup.pass, returnSecureToken: true}
-    ).
-    subscribe(
-      resData => { 
-        console.log(resData);
-        this.page="/";
-        alert("Signed up! Successfully");
-        this.http.post('https://flora-fbf5b-default-rtdb.firebaseio.com/posts.json',this.signup).subscribe(responseData =>{console.log(responseData)});
-      }, 
-      errorRes =>{
-        console.log(errorRes);
-        if (!errorRes.error || !errorRes.error.error.message){
-          this.errorMessage = "UNKNOWN_ERROR";
-        }
-        else {
-          switch(errorRes.error.error.message) {
-            case 'EMAIL_EXISTS': {
-              this.errorMessage = "EMAIL_EXISTS";
-              break;
-            }
-            case 'WEAK_PASSWORD : Password should be at least 6 characters': {
-              this.errorMessage = "WEAK_PASSWORD : Password should be at least 6 characters"
-              break;
-            }
-            default: {
-              this.errorMessage = "UNKNOWN_ERROR";
+    if(this.password!=this.rePassword) {
+      this.errorMessage = "Password does not match";
+    }
+    else {
+      this.loginService.signup(email, password).
+      subscribe(
+        respondData => {
+          alert("Sign Up sucessful!!!")
+          console.log(respondData); 
+          this.router.navigate(['/']);
+        },
+        errorRes => {
+          console.log(errorRes);
+          if (!errorRes.error || !errorRes.error.error.message){
+            this.errorMessage = "UNKNOWN_ERROR";
+          }
+          else {
+            switch(errorRes.error.error.message) {
+              case 'EMAIL_EXISTS': {
+                this.errorMessage = "EMAIL_EXISTS";
+                break;
+              }
+              case 'WEAK_PASSWORD : Password should be at least 6 characters': {
+                this.errorMessage = "WEAK_PASSWORD : Password should be at least 6 characters"
+                break;
+              }
+              default: {
+                this.errorMessage = "UNKNOWN_ERROR";
+              }
             }
           }
         }
-      }
-    );
+      );
+    }
   }
 }

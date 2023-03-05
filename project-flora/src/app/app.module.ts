@@ -15,6 +15,7 @@ import { SettingsComponent } from './main/settings/settings.component';
 import { LetterComponent } from './main/letter/letter.component';
 import { MyLettersComponent } from './main/my-letters/my-letters.component';
 import { AboutComponent } from './main/about/about.component';
+import { HomeComponent } from './main/home/home.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -26,12 +27,13 @@ import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
-import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './shared/auth.guard';
+
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
-  { path: 'main', component: MainComponent }
+  { path: 'main', component: MainComponent , canActivate: [AuthGuard]  }
 ]
 
 @NgModule({

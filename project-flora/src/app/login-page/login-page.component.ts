@@ -1,7 +1,10 @@
 import { Component, inject, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from './login.model';
-
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { LoginService } from 'src/services/login.service';
+import { throwError,Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -15,17 +18,22 @@ export class LoginPageComponent {
   password='';
   dict: any;
   errorMessage: any;
-  constructor(private http: HttpClient){}
+  isUserLoggedIn = new BehaviorSubject<boolean>(false);
+  constructor(private router:Router,private loginService: LoginService){}
 
   login : Login =new Login(this.email,this.password);
 
-  retrieve(){
-    this.login=new Login(this.email,this.password);
-    this.dict=this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',{email:this.login.email, password:this.login.pass, returnSecureToken:true}).
+  retrieve(form: NgForm){
+    const email=form.value.email;
+    const password =  form.value.password;
+
+    this.loginService.login(email, password).
     subscribe(
       resData => {
         console.log(resData);
         this.errorMessage=null;
+        // this.isUserLoggedIn.next(true);
+        this.router.navigate(['/main']);
       },
       errorRes => {
         console.log(errorRes);

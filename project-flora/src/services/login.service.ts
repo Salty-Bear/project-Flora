@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../app/models/user.model';
+import { catchError } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+
   constructor(private http: HttpClient) { }
+
+
 
   signup(email: string,pass:string){
     return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
@@ -14,7 +21,7 @@ export class LoginService {
       password: pass,
       returnSecureToken: true
     }
-    );
+    )
   }
 
   login(email: string,pass:string){
@@ -23,5 +30,5 @@ export class LoginService {
     password:pass,
     returnSecureToken:true
    })
-  }
+}
 }
