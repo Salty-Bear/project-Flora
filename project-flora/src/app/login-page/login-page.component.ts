@@ -4,7 +4,7 @@ import { Login } from './login.model';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/services/login.service';
-import { throwError,Subject, BehaviorSubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-login-page',
@@ -18,7 +18,6 @@ export class LoginPageComponent {
   password='';
   dict: any;
   errorMessage: any;
-  isUserLoggedIn = new BehaviorSubject<boolean>(false);
   constructor(private router:Router,private loginService: LoginService){}
 
   login : Login =new Login(this.email,this.password);
