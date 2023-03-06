@@ -17,11 +17,13 @@ interface LoginResponseData {
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
   user = new BehaviorSubject<User | boolean>(false);
+  tokenExpirationTimer: any;
   constructor(private http: HttpClient, private router: Router) { }
 
-  signup(email: string, pass:string){
+  signup(email: string, pass:string) {
     return this.http.post<LoginResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
     { email: email,
       password: pass,
@@ -56,12 +58,13 @@ export class LoginService {
             const expirationDate = new Date(new Date().getTime() + +resData.expiresIn*1000);
             const user = new User(resData.email, resData.localId, resData.idToken, expirationDate);
             this.user.next(user);
+            localStorage.setItem("userData", JSON.stringify(user));
           }
         ) 
       )
   }
 
-  login(email: string,pass:string){
+  login(email: string,pass:string) {
     return this.http.post<LoginResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
     { email:email,
       password:pass,
@@ -84,8 +87,51 @@ export class LoginService {
           const expirationDate = new Date(new Date().getTime() + +resData.expiresIn*1000);
           const user = new User(resData.email, resData.localId, resData.idToken, expirationDate);
           this.user.next(user);
+          this.autoLogout(+resData.expiresIn*1000);
+          localStorage.setItem("userData", JSON.stringify(user));
         }
       ) 
     )
+  }
+
+  logOut() {
+    this.user.next(null!);
+    localStorage.removeItem('userData');
+    this.router.navigate(['/']);
+    if(this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer=null;
+  }
+
+  autoLogin() {
+    const userData: {
+      email: string, 
+      id: string,
+      _token: string,
+      _tokenExpirationDate: string}=JSON.parse(localStorage.getItem('userData') || '{}');
+
+    if(!userData) {
+      return;
+    }
+
+    const loadedUser=new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+      const expirationDuration=new Date(userData._tokenExpirationDate).getTime()-new Date().getTime();
+      this.autoLogout(expirationDuration);
+    }
+  }
+
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(()=>{
+      this.logOut();
+    }, expirationDuration);
   }
 }

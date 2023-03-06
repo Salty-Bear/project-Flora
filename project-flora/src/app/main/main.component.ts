@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from 'src/services/login.service';
 
 @Component({
   selector: 'app-main',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  usertype:any='Home';
+  constructor (private loginService: LoginService) {}
+  
+  usertype: any='Home';
+
+  onLogOut() {
+    this.loginService.logOut();
+  }
 }
