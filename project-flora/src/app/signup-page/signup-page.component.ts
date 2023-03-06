@@ -34,30 +34,13 @@ export class SignupPageComponent {
       this.loginService.signup(email, password).
       subscribe(
         respondData => {
-          alert("Sign Up sucessful!!!")
+          alert("Sign Up successful!!!")
           console.log(respondData); 
           this.router.navigate(['/']);
         },
-        errorRes => {
-          console.log(errorRes);
-          if (!errorRes.error || !errorRes.error.error.message){
-            this.errorMessage = "UNKNOWN_ERROR";
-          }
-          else {
-            switch(errorRes.error.error.message) {
-              case 'EMAIL_EXISTS': {
-                this.errorMessage = "EMAIL_EXISTS";
-                break;
-              }
-              case 'WEAK_PASSWORD : Password should be at least 6 characters': {
-                this.errorMessage = "WEAK_PASSWORD : Password should be at least 6 characters"
-                break;
-              }
-              default: {
-                this.errorMessage = "UNKNOWN_ERROR";
-              }
-            }
-          }
+        errorMessage => {
+          console.log(errorMessage);
+          this.errorMessage = errorMessage;
         }
       );
     }

@@ -26,27 +26,19 @@ export class LoginPageComponent {
   retrieve(form: NgForm){
     const email=form.value.email;
     const password =  form.value.password;
-
-    let a=this.loginService.login(email, password);
-    // console.log(a);
-    // .
-    // subscribe(
-    //   resData => {
-    //     console.log(resData);
-    //     this.errorMessage=null;
-    //     // this.isUserLoggedIn.next(true);
-    //     this.router.navigate(['/main']);
-    //   },
-    //   errorRes => {
-    //     console.log(errorRes);
-    //     if( !errorRes.error || !errorRes.error.error.message) {
-    //       this.errorMessage = "UNKNOWN_ERROR";
-    //     }
-    //     else {
-    //       this.errorMessage = "COMMON_ERROR";
-    //     }
-    //   }
-    // );
+    this.loginService.login(email, password).
+    subscribe(
+      resData => {
+        console.log(resData);
+        this.errorMessage=null;
+        // this.isUserLoggedIn.next(true);
+        this.router.navigate(['/main']);
+      },
+      errorMessage => {
+        console.log(errorMessage);
+        this.errorMessage = errorMessage;
+      }
+    );
   }
 
 }

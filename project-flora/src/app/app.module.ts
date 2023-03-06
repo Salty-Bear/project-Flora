@@ -68,7 +68,7 @@ const appRoutes: Routes = [
     provideRemoteConfig(() => getRemoteConfig())
   ],
   providers: [
-    ScreenTrackingService,UserTrackingService
+    ScreenTrackingService, UserTrackingService, AuthGuard
   ],
   bootstrap: [AppComponent]
 })

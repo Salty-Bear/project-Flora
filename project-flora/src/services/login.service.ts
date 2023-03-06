@@ -1,42 +1,91 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../app/models/user.model';
-import { catchError } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 
-
+interface LoginResponseData {
+  kind: string;
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  isUserLoggedIn = new BehaviorSubject<boolean>(false); 
+  user = new BehaviorSubject<User | boolean>(false);
   constructor(private http: HttpClient, private router: Router) { }
 
-  signup(email: string,pass:string){
-    return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
-      {email: email,
+  signup(email: string, pass:string){
+    return this.http.post<LoginResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
+    { email: email,
       password: pass,
       returnSecureToken: true
     }
-    )
+    ).pipe(
+        catchError(
+          errorRes => {
+            console.log(errorRes);
+            if (!errorRes.error || !errorRes.error.error.message){
+              return throwError("UNKNOWN_ERROR");
+            }
+            else {
+              switch(errorRes.error.error.message) {
+                case 'EMAIL_EXISTS': {
+                  return throwError("EMAIL_EXISTS");
+                  break;
+                }
+                case 'WEAK_PASSWORD : Password should be at least 6 characters': {
+                  return throwError("WEAK_PASSWORD : Password should be at least 6 characters");
+                  break;
+                }
+                default: {
+                  return throwError("UNKNOWN_ERROR");
+                }
+              }
+            }
+          }
+        ),
+        tap(
+          resData => {
+            const expirationDate = new Date(new Date().getTime() + +resData.expiresIn*1000);
+            const user = new User(resData.email, resData.localId, resData.idToken, expirationDate);
+            this.user.next(user);
+          }
+        ) 
+      )
   }
 
   login(email: string,pass:string){
-    return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
+    return this.http.post<LoginResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
     { email:email,
       password:pass,
       returnSecureToken:true
-    },
-    {
-      observe: 'response'
-    }).
-    subscribe((result) => {
-      this.isUserLoggedIn.next(true); 
-      this.router.navigate(['/main']);
-      // console.log(result);
-    } 
+    }
+    ).pipe(
+      catchError(
+        errorRes => {
+          console.log(errorRes);
+        if( !errorRes.error || !errorRes.error.error.message) {
+          return throwError("UNKNOWN_ERROR");
+        }
+        else {
+          return throwError("COMMON_ERROR");
+        }
+        }
+      ),
+      tap(
+        resData => {
+          const expirationDate = new Date(new Date().getTime() + +resData.expiresIn*1000);
+          const user = new User(resData.email, resData.localId, resData.idToken, expirationDate);
+          this.user.next(user);
+        }
+      ) 
     )
   }
 }
