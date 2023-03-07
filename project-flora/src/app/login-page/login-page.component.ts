@@ -25,7 +25,6 @@ export class LoginPageComponent {
   retrieve(form: NgForm){
     const email=form.value.email;
     const password =  form.value.password;
-
     this.loginService.login(email, password).
     subscribe(
       resData => {
@@ -34,14 +33,9 @@ export class LoginPageComponent {
         // this.isUserLoggedIn.next(true);
         this.router.navigate(['/main']);
       },
-      errorRes => {
-        console.log(errorRes);
-        if( !errorRes.error || !errorRes.error.error.message) {
-          this.errorMessage = "UNKNOWN_ERROR";
-        }
-        else {
-          this.errorMessage = "COMMON_ERROR";
-        }
+      errorMessage => {
+        console.log(errorMessage);
+        this.errorMessage = errorMessage;
       }
     );
   }

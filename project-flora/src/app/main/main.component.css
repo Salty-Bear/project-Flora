@@ -38,6 +38,11 @@
     padding-left: 20%;
 }
 
+
+.btn-outline-success:active{
+    background-color: #1C6758;
+}
+
 .img-fluid{
     width: 100%;
 }
