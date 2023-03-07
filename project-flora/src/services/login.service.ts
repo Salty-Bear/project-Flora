@@ -4,6 +4,9 @@ import { User } from '../app/models/user.model';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
+
 
 interface LoginResponseData {
   kind: string;
@@ -21,7 +24,7 @@ interface LoginResponseData {
 export class LoginService {
   user = new BehaviorSubject<User | boolean>(false);
   tokenExpirationTimer: any;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,private fireauth : AngularFireAuth) { }
 
   signup(email: string, pass:string) {
     return this.http.post<LoginResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
@@ -134,4 +137,8 @@ export class LoginService {
       this.logOut();
     }, expirationDuration);
   }
+
+
+  
+
 }

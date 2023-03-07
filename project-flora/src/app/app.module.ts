@@ -28,6 +28,7 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { AuthGuard } from './shared/auth.guard';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 const appRoutes: Routes = [
@@ -68,7 +69,7 @@ const appRoutes: Routes = [
     provideRemoteConfig(() => getRemoteConfig())
   ],
   providers: [
-    ScreenTrackingService, UserTrackingService, AuthGuard
+    ScreenTrackingService, UserTrackingService, AuthGuard,{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }
   ],
   bootstrap: [AppComponent]
 })

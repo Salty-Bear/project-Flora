@@ -4,6 +4,7 @@ import { Login } from './login.model';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/services/login.service';
+import { AuthServiceService } from '../shared/auth.service.service';
 
 
 @Component({
@@ -18,9 +19,14 @@ export class LoginPageComponent {
   password='';
   dict: any;
   errorMessage: any;
-  constructor(private router:Router,private loginService: LoginService){}
+
+  constructor(private router:Router,private loginService: LoginService,private auth: AuthServiceService){}
 
   login : Login =new Login(this.email,this.password);
+
+
+
+
 
   retrieve(form: NgForm){
     const email=form.value.email;
@@ -38,6 +44,11 @@ export class LoginPageComponent {
         this.errorMessage = errorMessage;
       }
     );
+  }
+
+    signInWithGoogle(){
+      console.log("ok")
+    this.auth.googleSignIn();
   }
 
 }

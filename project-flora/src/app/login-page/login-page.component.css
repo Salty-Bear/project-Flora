@@ -25,7 +25,7 @@ label{
 }
 
 .lel{
-    margin-top: 30%;
+    margin-top: 20%;
 }
 .carouselle{
     width: 30%;
@@ -111,4 +111,23 @@ input.ng-invalid.ng-touched{
     font-size: 0.9rem;
     font-weight: 400;
     color: red;
+}
+
+.font{
+    color: #1C6758;
+    text-decoration: none;
+    border: 0px;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.font:hover{
+    color: white;
+}
+
+.icon{
+    height: 70%;
+}
+.logins{
+    margin-top: 2%;
 }

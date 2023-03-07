@@ -39,6 +39,8 @@
                         </div>
                     <div class="col">
                         <h1 class="fancy">Flora</h1>
+                        <div class="error mt-3" *ngIf="errorMessage == 'COMMON_ERROR'">Sorry, your email or password was incorrect.</div>
+                        <div class="error mt-3" *ngIf="errorMessage == 'UNKNOWN_ERROR'">An unexpected error occurred!!</div>
                         <form class="lel" #Auth="ngForm">
                             <div class="row mb-3">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Email :</label>
@@ -54,9 +56,13 @@
                             </div>
                             <button type="submit" class="css-button-sliding-to-left--green"  [disabled]=(!Auth.valid) (click)="retrieve(Auth)">Login</button>   
                             <button type="submit" class="css-button-sliding-to-left--green" [routerLink]="['/signup']" >Signup</button>
-                            <div class="error mt-3" *ngIf="errorMessage == 'COMMON_ERROR'">Sorry, your email or password was incorrect.</div>
-                            <div class="error mt-3" *ngIf="errorMessage == 'UNKNOWN_ERROR'">An unexpected error occurred!!</div>
+
                         </form>
+                        <div class="logins">
+                        <div class="css-button-sliding-to-left--green signin">
+                            <img src="assets\icons\google.png"  class="icon" alt="">
+                            <button (click)="signInWithGoogle()" class="font">Sign in with Google</button>
+                        </div></div>
                     </div>
                     </div>
                 </div>
