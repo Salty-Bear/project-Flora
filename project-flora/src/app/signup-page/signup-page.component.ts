@@ -11,6 +11,7 @@ import { LoginService } from 'src/services/login.service';
   styleUrls: ['./signup-page.component.css']
 })
 export class SignupPageComponent {
+  u_id:string;
   isLoginMode = true;
   errorMessage: string;
   f_name: string;
@@ -19,8 +20,9 @@ export class SignupPageComponent {
   email: string;
   password: string;
   rePassword: string;
+  object: any;
 
-  constructor(private loginService: LoginService,private router: Router){}
+  constructor(private loginService: LoginService,private router: Router,private http: HttpClient){}
 
 
   onSubmit(form: NgForm){
@@ -35,6 +37,13 @@ export class SignupPageComponent {
       subscribe(
         respondData => {
           alert("Sign Up sucessful!!!")
+          this.http.post('https://flora-fbf5b-default-rtdb.firebaseio.com/users.json',{email: this.email}).subscribe(respondData => {console.log(respondData)});
+
+
+          this.http.post('https://flora-fbf5b-default-rtdb.firebaseio.com/profiles.json',{firstName:this.f_name,lastName:this.l_name,userName:this.u_name,email: this.email,password:this.password}).subscribe(respondData => {console.log(respondData)});
+
+
+          this.http.get('https://flora-fbf5b-default-rtdb.firebaseio.com/profiles.json').subscribe(respondData =>{ console.log(respondData) });
           console.log(respondData); 
           this.router.navigate(['/']);
         },

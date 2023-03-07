@@ -1,52 +1,35 @@
-// import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
-// import { ChatMessage } from 'src/app/models/chat.model';
-// import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
-// import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ChatMessage } from 'src/app/models/chat.model';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { orderByKey } from '@angular/fire/database';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ChatService {
-//   user:any;
-//   chatMessages: AngularFirestoreCollection<ChatMessage[]>;
-//   chatMessage: ChatMessage;
-//   userName: Observable<string>;
-
-
-//   constructor(
-//     private db: AngularFireDatabase,
-//     private chat: ChatMessage
-//   ) {}
+@Injectable({
+  providedIn: 'root'
+})
+export class ChatService {
+  user:any;
+  chatMessages: Observable<ChatMessage[]>
+  chatMessage: ChatMessage;
+  userName: Observable<string>;
 
 
-//   sendMessage(msg: string){
-//     const timestamp = this.getTimeStamp();
-//     const email = this.user.email;
-//     this.chatMessages = this.getMessages();
-//     this.chatMessages.push({
-//       message:msg,
-//       timeSent: timestamp,
-//       userName: this.userName,
-//       email: email
-//     })
-//   }
+  constructor(
+    private db: AngularFireDatabase,
+    private adAuth: AngularFireAuth
+  ) {
+    this.adAuth.authState.subscribe(auth =>{
+        if(auth !== undefined && auth !==null){
+            this.user = auth;
 
-//   getTimeStamp() {
-//     const now = new Date();
-//     const date = now.getUTCFullYear() + '/' +(now.getUTCMonth()+1) + '/' +  now.getUTCDate();
-//     const time = now.getUTCHours() + ':' + now.getUTCMinutes() + ':' + now.getUTCSeconds();
-//     return (date + ' ' + time);
-//   }
+        }
+    });
+  }
 
-//   getMessages(): AngularFirestoreCollection<ChatMessage[]>{
-    
-//     return this.db.list('messages', {
-//       query: {
-//         limitToLast: 25,
-//         orderByKey: true
-//       }
-//     });
-//   }
 
-// }
+
+
+
+}
