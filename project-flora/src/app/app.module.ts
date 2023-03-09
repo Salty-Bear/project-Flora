@@ -30,7 +30,6 @@ import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config
 import { AuthGuard } from './shared/auth.guard';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
-
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
