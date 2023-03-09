@@ -10,7 +10,7 @@
     position: fixed;
     left:0;
     width:17%;
-    background: #cfdad2;
+    background: #ABC270;
     height: 100%;
     border-top-right-radius:2% ;
     border-top-left-radius: 2%;
@@ -27,7 +27,8 @@
     font-family: "Tilt Neon";
     font-size:130%;
     color: #1C6758;
-    background-color:#cfdad2;;
+    /*background-color: #cfdad2; */
+    background-color:#ABC270; 
     border-radius: 0px;
     line-height: 200%;
 }
@@ -112,7 +113,7 @@ audio{
 
 
 audio::-webkit-media-controls-panel {
-  background-color: #cfdad2;;
+  background-color: #ABC270;
 }
 
 audio::-webkit-media-controls-play-button{
@@ -125,4 +126,15 @@ audio:hover, audio:focus, audio:active
     -webkit-transform: scale(1.05);
 -moz-transform: scale(1.05);
 transform: scale(1.05);
+}
+
+
+.profilename{
+    z-index: 1;
+    position: absolute;
+    top:25%;
+    left: 30%;
+    font-weight: 800;
+    font-family: cursive;
+    color: #1C6758;
 }
