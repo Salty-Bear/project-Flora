@@ -4,8 +4,6 @@ import { Login } from './login.model';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/services/login.service';
-import { AuthServiceService } from '../shared/auth.service.service';
-
 
 @Component({
   selector: 'app-login-page',
@@ -20,13 +18,9 @@ export class LoginPageComponent {
   dict: any;
   errorMessage: any;
 
-  constructor(private router:Router,private loginService: LoginService,private auth: AuthServiceService){}
+  constructor(private router:Router, private loginService: LoginService){}
 
-  login : Login =new Login(this.email,this.password);
-
-
-
-
+  login: Login=new Login(this.email,this.password);
 
   retrieve(form: NgForm){
     const email=form.value.email;
@@ -36,7 +30,6 @@ export class LoginPageComponent {
       resData => {
         console.log(resData);
         this.errorMessage=null;
-        // this.isUserLoggedIn.next(true);
         this.router.navigate(['/main']);
       },
       errorMessage => {
@@ -46,9 +39,8 @@ export class LoginPageComponent {
     );
   }
 
-    signInWithGoogle(){
-      console.log("ok")
-    this.auth.googleSignIn();
+  signInWithGoogle() {
+    this.loginService.googleSignIn();
   }
 
 }

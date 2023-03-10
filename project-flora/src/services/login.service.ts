@@ -17,6 +17,11 @@ interface LoginResponseData {
   localId: string;
 }
 
+interface refreshTokenResData {
+  expires_in: string;
+  id_token: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +29,11 @@ interface LoginResponseData {
 export class LoginService {
   user = new BehaviorSubject<User | boolean>(false);
   tokenExpirationTimer: any;
-  constructor(private http: HttpClient, private router: Router,private fireauth : AngularFireAuth) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private fireauth : AngularFireAuth
+  ) {}
 
   signup(email: string, pass:string) {
     return this.http.post<LoginResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
@@ -77,12 +86,12 @@ export class LoginService {
       catchError(
         errorRes => {
           console.log(errorRes);
-        if( !errorRes.error || !errorRes.error.error.message) {
-          return throwError("UNKNOWN_ERROR");
-        }
-        else {
-          return throwError("COMMON_ERROR");
-        }
+          if( !errorRes.error || !errorRes.error.error.message) {
+            return throwError("UNKNOWN_ERROR");
+          }
+          else {
+            return throwError("COMMON_ERROR");
+          }
         }
       ),
       tap(
@@ -94,6 +103,29 @@ export class LoginService {
           localStorage.setItem("userData", JSON.stringify(user));
         }
       ) 
+    )
+  }
+
+  googleSignIn(){
+    return this.fireauth.signInWithPopup(new GoogleAuthProvider).then(
+      res => {
+        this.http.post<refreshTokenResData>('https://securetoken.googleapis.com/v1/token?key=AIzaSyCXDVFX6EdK1-4DpbEGrqocOgpPAEqN7DQ',
+        { grant_type: "refresh_token",
+          refresh_token: res.user!.refreshToken
+        }).subscribe(
+          resData=> {
+            const expirationDate = new Date(new Date().getTime() + +resData.expires_in*1000);
+            const user = new User(res.user!.email!, res.user!.uid!, resData.id_token, expirationDate);
+            this.user.next(user);
+            this.autoLogout(+resData.expires_in*1000);
+            localStorage.setItem("userData", JSON.stringify(user));
+            this.router.navigate(['/main']);
+          }
+        )
+      },
+      err =>{
+        alert(err.message);
+      }
     )
   }
 
@@ -137,8 +169,5 @@ export class LoginService {
       this.logOut();
     }, expirationDuration);
   }
-
-
-  
 
 }
