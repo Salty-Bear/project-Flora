@@ -80,7 +80,8 @@ export class SignupPageComponent {
 
 
 
-          this.productsRef.doc(this.email).set(this.model).then( _ => alert("hogya send"));     //adding data to firestore
+          // this.productsRef.doc(this.email).set(this.model).then( _ => alert("hogya send"));     //adding data to firestore
+          this.productsRef.add(this.model).then( _ => alert("hogya send"));
           // this.http.post('https://flora-fbf5b-default-rtdb.firebaseio.com/profiles.json',{firstName:this.f_name,lastName:this.l_name,userName:this.u_name,email: this.email,password:this.password}).subscribe(respondData => {console.log(respondData)});
           
           this.router.navigate(['/']);  //navigating to login page
