@@ -5,8 +5,9 @@
         <div class="back">
             <img src="assets/pfp/pvz.jpeg" alt="" class="pfp">
             <img src="assets/background.png" alt="" class="imagebackground">
-            <h1 class="profilename">Name</h1>
+            <h1 class="profilename">{{name}}</h1>
         </div>
+        
         <ul>
             <li>
                 <button type="button" class="btn btn-outline-success ok" (click)="usertype ='Home'"><i class="fa-solid fa-house"></i>  Home</button>
@@ -36,7 +37,7 @@
                 <button type="button" class="btn btn-outline-success ok" (click)="onLogOut()"><i class="fa-solid fa-person-walking-arrow-right"></i> Signout</button>
             </li>
             <li>
-                <audio controls autoplay loop class="music">
+                <audio controls  loop class="music"> //autoplay
                     <source src="assets\Home\birdmusic.mp3" type="audio/mpeg">
                   Your browser does not support the audio element.
                   </audio>

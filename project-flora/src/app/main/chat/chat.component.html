@@ -60,17 +60,17 @@
             </div>
         </div>
         <div class="message-window">
-            <ul *ngFor="let post of posts | async">
+            <!-- <ul *ngFor="let post of posts | async">
                 <li>
                     <strong>{{ post.title }}</strong>
                     <br>
                     {{ post.content }}
                 </li>
-            </ul>
+            </ul> -->
         </div>
         <div class="input">
-            <input type="text" class="chatInput"  >
-            <button class="btn btn-primary"  value="add a post">Send</button>
+            <input type="text" class="chatInput"  name="title" [(ngModel)]="msg">
+            <button class="btn btn-primary"  value="add a post" (click)="send()">Send</button>
         </div>
     </div>
 </div>

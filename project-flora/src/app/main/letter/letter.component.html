@@ -7,7 +7,7 @@
           <div class="mb-3">
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="13"></textarea>
             <br>
-            <button class="btn">Send</button>
+            <button class="btn" (click)="sendletter()" [(ngModel)]="letter">Send</button>
           </div>
     </form>
 

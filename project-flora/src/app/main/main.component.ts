@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { LoginService } from 'src/services/login.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+
 
 
 @Component({
@@ -8,11 +11,35 @@ import { LoginService } from 'src/services/login.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  constructor (private loginService: LoginService) {}
+  constructor (private loginService: LoginService,public afs: AngularFirestore) {}
   usertype: any='Home';
-  count=0;
+  postsCol: AngularFirestoreCollection<{name:string}>;
+  email:any;
+  name:string;
+
   onLogOut() {
     this.loginService.logOut();
   }
-
-}
+  // JSON.parse(localStorage.getItem('userData') || '{}').email
+  em=JSON.parse(localStorage.getItem('userData') || '{}').email;
+  ngOnInit() {
+    this.afs.doc(`users/${this.em}`).get().subscribe(ref => {
+      console.log(ref);
+      if(!ref.exists){
+      
+      console.log("notfound")// //DOC DOES NOT EXIST
+      
+      }else{
+      
+      const doc:any = ref.data();
+      
+      this.name = doc.FIRST_NAME;
+      
+      console.log(this.name) //LOG ENTIRE DOC
+      
+      }
+      
+      });
+      
+      }
+  }
