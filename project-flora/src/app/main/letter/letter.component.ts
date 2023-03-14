@@ -22,15 +22,16 @@ export class LetterComponent {
   userlist: AngularFirestoreCollection<userlist1>;
   user: Observable<userlist1[]>;
   target:any;
+  targetuser:any;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
-  letter:string;
+  letter:any;
 
   gettar(res:any){
     this.target=Math.floor((Math.random()*res.length)%res.length);
     while(res[this.target].id == this.em) {
       this.target=Math.floor((Math.random()*res.length)%res.length);
     }
-
+    this.targetuser=res[this.target].id;
   }
 
 
@@ -45,11 +46,16 @@ export class LetterComponent {
         })
       }));
 
-
-
      this.user.subscribe(res =>
       this.gettar(res))
+
+      if(this.letter!="" && this.letter!=null) {
+        this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.letter})
+        alert("sent successfully")
+      }
+      this.letter="";
   }
+
 
   }
 

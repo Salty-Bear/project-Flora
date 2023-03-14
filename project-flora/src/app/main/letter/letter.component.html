@@ -5,9 +5,9 @@
     <br>
     <form action="">
           <div class="mb-3">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="13"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="13" [(ngModel)]="letter" name="letter"></textarea>
             <br>
-            <button class="btn" (click)="sendletter()" [(ngModel)]="letter">Send</button>
+            <button class="btn" (click)="sendletter()" >Send</button>
           </div>
     </form>
 
