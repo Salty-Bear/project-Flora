@@ -44,6 +44,21 @@
             </li>
         </ul> 
     </div>
+
+
+    <button class="letterbutton" (click)="show()">hello</button>
+
+
+    <div class="container-fluidletter" *ngIf="display" >
+        <p>{{lettermessage}}</p>
+        <button type="button"(click)="closePanel()" class="btn-close" aria-label="Close"></button>
+        <div class="buttonlay">
+            <button class="lel">Accept</button>
+            <button class="lel" (click)="sendletter()">Release</button>
+        </div>
+    </div>
+
+
     <div class="parent-component app" [ngSwitch]="usertype">
         <app-about *ngSwitchCase="'about'"></app-about>
         <app-settings *ngSwitchCase="'settings'"></app-settings>
