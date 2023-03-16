@@ -32,6 +32,7 @@ export class LetterComponent {
       this.target=Math.floor((Math.random()*res.length)%res.length);
     }
     this.targetuser=res[this.target].id;
+    console.log(this.targetuser,this.target);
   }
 
 
@@ -49,8 +50,8 @@ export class LetterComponent {
      this.user.subscribe(res =>
       this.gettar(res))
 
-      if(this.letter!="" && this.letter!=null) {
-        this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.letter})
+      if(this.letter!="" && this.letter!=null ) {
+        this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.letter,sender:this.em})
         alert("sent successfully")
       }
       this.letter="";

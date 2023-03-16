@@ -2,5 +2,19 @@
     <video class="img-fluid" autoplay playsinline loop muted poster="assets\Home\alt.jpg">
     <source src="assets\Home\back.mp4" type="video/mp4">
     </video>
-    <img src="assets\Home\Tree.png" alt="" class="tree">        
+    <img src="assets\Home\Tree.png" alt="" class="tree">      
+    
+    
+
+    <button class="letterbutton" (click)="show()">hello</button>
+
+
+    <div class="container-fluidletter" *ngIf="display" >
+        <p>{{lettermessage}}</p>
+        <button type="button"(click)="closePanel()" class="btn-close" aria-label="Close"></button>
+        <div class="buttonlay">
+            <button class="lel" (click)="onAccept()">Accept</button>
+            <button class="lel" (click)="sendletter()">Release</button>
+        </div>
+    </div>
 </div>

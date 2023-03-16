@@ -4,15 +4,15 @@ import { AngularFireList } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-
+import { map } from 'rxjs';
 
 interface Post{
   sender:string;
   content:string;
 }
 
-interface PostId extends Post{
-  id: string;
+interface friends{
+  email:string;
 }
 
 @Component({
@@ -20,12 +20,17 @@ interface PostId extends Post{
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
+
+
+
 export class ChatComponent {
   postsCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
   msg:string;
-
-
+  // friends:string[]=[];
+  friends:{email:string,f_name:string}[]=[];
+  userlist: AngularFirestoreCollection<friends>;
+  user: Observable<friends[]>;
 
   constructor(public afs: AngularFirestore) {}
 
@@ -33,6 +38,39 @@ export class ChatComponent {
   id="orange@gmail.com"
 
   ngOnInit() {
+    this.userlist=this.afs.collection(`users/${this.em}/Friends`);
+
+    this.user = this.userlist.snapshotChanges()
+    .pipe(map(actions => {
+      return actions.map(a => {
+        const email=a.payload.doc.id;
+        return {email};
+      })
+    }))
+    console.log(this.friends);
+    this.user.subscribe(res =>{
+      res.forEach( a =>{
+        this.afs.doc(`users/${a.email}`).get().subscribe(ref =>{
+          if(!ref.exists){
+            console.log("notfound")// //DOC DOES NOT EXIST
+          }
+          else{
+            const doc:any = ref.data();
+            this.friends.push({email:a.email,f_name:doc.FIRST_NAME})
+          }
+          
+      })
+      }
+
+      )
+    })
+    console.log(this.friends);
+
+
+
+
+
+
     // this.afs.doc(`users/${this.em}/Friends/${this.id}/`).get().subscribe(ref => {
     //   console.log(ref);
     //   if(!ref.exists){
@@ -49,6 +87,21 @@ export class ChatComponent {
     //     }
     //   });
   }
+
+onContactClick(friend:any){
+  console.log("hogya entry")
+}
+
+
+
+
+
+
+
+
+
+
+
 
   retrievechat(){
     // this.afs.doc(`users/${this.em}/Friends/${this.id}/`).get().subscribe(ref => {

@@ -1,55 +1,20 @@
 <div class="container-fluid">
     <div class="friends-list">
         <div class="heading">Chats</div>
-        <div class="friend friend-1">
+        <div class="friend" *ngFor="let friend of friends; let index=index;" [attr.data-index]="index" (click)="onContactClick(friend)">
             <div class="image">
                 <img src="assets/pfp/pvz.jpeg" alt="">
             </div>
             <div class="wrapper">
-                <p class="name">Ayush</p>
+                <p class="name">{{friend.f_name}}</p>
                 <p class="last-message">Hello</p>
             </div>
             <div class="time">
                 2:15
             </div>
-        </div>
-        <div class="friend friend-2">
-            <div class="image">
-                <img src="assets/pfp/pvz.jpeg" alt="">
-            </div>
-            <div class="wrapper">
-                <p class="name">Ayush</p>
-                <p class="last-message">Hello</p>
-            </div>
-            <div class="time">
-                2:15
-            </div>
-        </div>
-        <div class="friend friend-3">
-            <div class="image">
-                <img src="assets/pfp/pvz.jpeg" alt="">
-            </div>
-            <div class="wrapper">
-                <p class="name">Ayush</p>
-                <p class="last-message">Hello</p>
-            </div>
-            <div class="time">
-                2:15
-            </div>
-        </div>
-        <div class="friend friend-4">
-            <div class="image">
-                <img src="assets/pfp/pvz.jpeg" alt="">
-            </div>
-            <div class="wrapper">
-                <p class="name">Ayush</p>
-                <p class="last-message">Hello</p>
-            </div>
-            <div class="time">
-                2:15
-            </div>
-        </div>
+        </div>    
     </div>
+    
     <div class="chat-window">
         <div class="user-info">
             <div class="image">
@@ -59,6 +24,7 @@
                 <p>Ayush</p>
             </div>
         </div>
+
         <div class="message-window">
             <!-- <ul *ngFor="let post of posts | async">
                 <li>
