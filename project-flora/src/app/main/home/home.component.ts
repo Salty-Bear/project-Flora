@@ -75,6 +75,7 @@ show() {
   .pipe(map(actions => {
     return actions.map(a => {
       const content=a.payload.doc.id;
+      console.log(content);
       return { content};
     })
   }));
@@ -98,6 +99,7 @@ show() {
 onAccept(){
   console.log(this.doc.sender);
   this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({});
+  this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({});
   this.display=false;
 }
 }

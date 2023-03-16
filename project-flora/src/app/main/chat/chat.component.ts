@@ -3,12 +3,14 @@ import { Component } from '@angular/core';
 import { AngularFireList } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, timeInterval } from 'rxjs';
 import { map } from 'rxjs';
+import { orderBy,limit } from 'firebase/firestore';
 
 interface Post{
-  sender:string;
-  content:string;
+  message:string;
+  email:string;
+  timestamp: string;
 }
 
 interface friends{
@@ -31,7 +33,7 @@ export class ChatComponent {
   friends:{email:string,f_name:string}[]=[];
   userlist: AngularFirestoreCollection<friends>;
   user: Observable<friends[]>;
-
+  currentuser:string;
   constructor(public afs: AngularFirestore) {}
 
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
@@ -89,7 +91,23 @@ export class ChatComponent {
   }
 
 onContactClick(friend:any){
-  console.log("hogya entry")
+  this.currentuser=friend.email;
+      this.postsCol=this.afs.collection(`users/${this.em}/Friends/${friend.email}/messages`, ref => ref.orderBy('timestamp').limit(25));
+      this.posts=this.postsCol.snapshotChanges()
+      .pipe(map(actions => {
+        return actions.map( a=> {
+          const message=a.payload.doc.data().message;
+          const email=a.payload.doc.data().email;
+          const timestamp=a.payload.doc.data().timestamp;
+          console.log(a.payload.doc.data());
+          return {message,email,timestamp};
+        })
+      }))
+      this.posts.subscribe(res =>{
+        console.log(res);
+      })
+
+      
 }
 
 
@@ -125,9 +143,9 @@ onContactClick(friend:any){
 
   send(){
     if(this.msg!="" || this.msg !=null){
-    this.afs.collection(`users/${this.em}/Friends/orange@gmail.com/messages`).add({email:this.em,message:this.msg,timestamp:new Date().getTime()}).then( _ => alert("hogya send"));
+    this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em,message:this.msg,timestamp:new Date().getTime()}).then();
+    this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em,message:this.msg,timestamp:new Date().getTime()}).then();
     this.msg="";
-    console.log(Math.floor(Date.now() / 1000));
     }
   }
 }

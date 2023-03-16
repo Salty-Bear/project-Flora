@@ -51,7 +51,7 @@ export class LetterComponent {
       this.gettar(res))
 
       if(this.letter!="" && this.letter!=null ) {
-        this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.letter,sender:this.em})
+        this.afs.collection(`users/${this.targetuser}/Letters`).add({message:this.letter,sender:this.em})
         alert("sent successfully")
       }
       this.letter="";
