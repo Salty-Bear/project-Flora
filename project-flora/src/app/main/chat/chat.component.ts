@@ -105,11 +105,11 @@ onContactClick(friend:any){
           return {message,email,timestamp};
         })
       }))
-      this.posts.pipe(take(1)).subscribe(res =>{
-        res.forEach(i => {
-          this.messages.push({message:i.message,email:i.email,timestamp:i.timestamp});
-        });
-      })
+      // this.posts.pipe(take(1)).subscribe(res =>{
+      //   res.forEach(i => {
+      //     this.messages.push({message:i.message,email:i.email,timestamp:i.timestamp});
+      //   });
+      // })
 }
 
 
@@ -119,11 +119,11 @@ onContactClick(friend:any){
 
 
   send(){
-    if(this.msg!="" || this.msg !=null){
+    if(this.msg!="" && this.msg !=null){
       const timestamp = new Date().getTime().toString();
       this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em,message:this.msg,timestamp: timestamp}).then();
       this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em,message:this.msg,timestamp: timestamp}).then();
-      this.messages.push({message:this.msg.toString(),email:this.em,timestamp: timestamp});
+      // this.messages.push({message:this.msg.toString(),email:this.em,timestamp: timestamp});
       this.msg="";
     }
   }
