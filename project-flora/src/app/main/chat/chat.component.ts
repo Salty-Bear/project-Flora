@@ -4,8 +4,8 @@ import { AngularFireList } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, timeInterval } from 'rxjs';
-import { map } from 'rxjs';
-import { orderBy,limit } from 'firebase/firestore';
+import { map, take } from 'rxjs';
+import { orderBy, limit } from 'firebase/firestore';
 
 interface Post{
   message:string;
@@ -34,13 +34,15 @@ export class ChatComponent {
   userlist: AngularFirestoreCollection<friends>;
   user: Observable<friends[]>;
   currentuser:string;
-  constructor(public afs: AngularFirestore) {}
+  messages:{message:string,email:string,timestamp:string}[]=[];
 
+
+  constructor(public afs: AngularFirestore) {}
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
-  id="orange@gmail.com"
 
   ngOnInit() {
     this.userlist=this.afs.collection(`users/${this.em}/Friends`);
+
 
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
@@ -103,11 +105,11 @@ onContactClick(friend:any){
           return {message,email,timestamp};
         })
       }))
-      this.posts.subscribe(res =>{
-        console.log(res);
+      this.posts.pipe(take(1)).subscribe(res =>{
+        res.forEach(i => {
+          this.messages.push({message:i.message,email:i.email,timestamp:i.timestamp});
+        });
       })
-
-      
 }
 
 
@@ -116,36 +118,13 @@ onContactClick(friend:any){
 
 
 
-
-
-
-
-
-  retrievechat(){
-    // this.afs.doc(`users/${this.em}/Friends/${this.id}/`).get().subscribe(ref => {
-    //   console.log(ref);
-    //   if(!ref.exists){
-      
-    //     console.log("notfound")// //DOC DOES NOT EXIST
-        
-    //     }else{
-        
-    //     const doc:any = ref.data();
-
-    //     console.log("hello")
-    //     this.posts=doc;
-    //     console.log(doc) //LOG ENTIRE DOC
-        
-    //     }
-    //   });
-  }
-
-
   send(){
     if(this.msg!="" || this.msg !=null){
-    this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em,message:this.msg,timestamp:new Date().getTime()}).then();
-    this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em,message:this.msg,timestamp:new Date().getTime()}).then();
-    this.msg="";
+      const timestamp = new Date().getTime().toString();
+      this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em,message:this.msg,timestamp: timestamp}).then();
+      this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em,message:this.msg,timestamp: timestamp}).then();
+      this.messages.push({message:this.msg.toString(),email:this.em,timestamp: timestamp});
+      this.msg="";
     }
   }
 }

@@ -26,13 +26,14 @@
         </div>
 
         <div class="message-window">
-            <!-- <ul *ngFor="let post of posts | async">
-                <li>
-                    <strong>{{ post.title }}</strong>
+            <div *ngFor="let message of posts | async "  >
+                <div>
+                    <strong>{{ message.email }}</strong>
                     <br>
-                    {{ post.content }}
-                </li>
-            </ul> -->
+                    {{ message.message }}
+                    {{message.timestamp }}
+                </div>
+            </div>
         </div>
         <div class="input">
             <input type="text" class="chatInput"  name="title" [(ngModel)]="msg">
