@@ -27,12 +27,19 @@ export class LetterComponent {
   letter:any;
 
   gettar(res:any){
-    this.target=Math.floor((Math.random()*res.length)%res.length);
+    this.target=Math.floor(Math.random() * (res.length) );
     while(res[this.target].id == this.em) {
-      this.target=Math.floor((Math.random()*res.length)%res.length);
+      this.target=Math.floor(Math.random()*res.length);
     }
+    console.log(this.target);
     this.targetuser=res[this.target].id;
     console.log(this.targetuser,this.target);
+    
+    if(this.letter!="" && this.letter!=null ) {
+      this.afs.collection(`users/${this.targetuser}/Letters`).add({message:this.letter,sender:this.em})
+      alert("sent successfully")
+    }
+    this.letter="";
   }
 
 
@@ -49,12 +56,6 @@ export class LetterComponent {
 
      this.user.subscribe(res =>
       this.gettar(res))
-
-      if(this.letter!="" && this.letter!=null ) {
-        this.afs.collection(`users/${this.targetuser}/Letters`).add({message:this.letter,sender:this.em})
-        alert("sent successfully")
-      }
-      this.letter="";
   }
 
 
