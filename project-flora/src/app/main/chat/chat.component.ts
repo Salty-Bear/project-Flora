@@ -15,6 +15,7 @@ interface Post{
 
 interface friends{
   email:string;
+  f_name:string;
 }
 
 @Component({
@@ -48,7 +49,8 @@ export class ChatComponent {
     .pipe(map(actions => {
       return actions.map(a => {
         const email=a.payload.doc.id;
-        return {email};
+        const f_name=a.payload.doc.data().f_name;
+        return {email,f_name};
       })
     }))
     console.log(this.friends);
