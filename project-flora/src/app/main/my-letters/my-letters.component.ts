@@ -35,7 +35,7 @@ export class MyLettersComponent {
         const message=a.payload.doc.data().message;
         const where=a.payload.doc.data().where;
         console.log(message);
-        return { message,where};
+        return { message, where };
       })
     }));
     this.user.subscribe(res => console.log(res));
