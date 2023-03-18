@@ -30,6 +30,8 @@ export class HomeComponent {
   lettermessage="";
   target:any;
   targetuser:any;
+
+
   closePanel() {
     this.display=false;
   }
@@ -110,17 +112,23 @@ show() {
   this.display=true;
 }
 
-  getFname(email: string) {
+  getSenderFname(email: string) {
     this.afs.doc(`users/${email}`).get().subscribe(ref => {
       const doc:any = ref.data();
-      return doc.FIRST_NAME;
+      this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: doc.FIRST_NAME});
+    })
+  }
+
+  getUserFname(email: string) {
+    this.afs.doc(`users/${email}`).get().subscribe(ref => {
+      const doc:any = ref.data();
+      this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: doc.FIRST_NAME});
     })
   }
 
   onAccept(){
-    console.log(this.doc.sender);
-    this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: "asodasd"});
-    this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: "oaksdasd"});
+    this.getSenderFname(this.doc.sender);
+    this.getUserFname(this.em);
     this.display=false;
     this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
     this.lettermessage="";

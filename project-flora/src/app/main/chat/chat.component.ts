@@ -9,9 +9,10 @@ import { orderBy, limit } from 'firebase/firestore';
 import { EmailAuthProvider } from 'firebase/auth';
 
 interface Post{
-  message:string;
-  email:string;
+  message: string;
+  email: string;
   timestamp: string;
+  time: string;
 }
 
 interface friends{
@@ -31,13 +32,18 @@ export class ChatComponent {
   postsCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
   msg:string;
-  // friends:string[]=[];
-  friends:{email:string,f_name:string}[]=[];
+
+  friends: { email:string, f_name:string } [] = [];
+
   userlist: AngularFirestoreCollection<friends>;
   user: Observable<friends[]>;
   currentuser:string;
+  currentUserFname: string;
+  currentUserUname: string;
   messages:{message:string,email:string,timestamp:string}[]=[];
   f: string;
+
+  month: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 
   constructor(public afs: AngularFirestore) {}
@@ -50,13 +56,12 @@ export class ChatComponent {
       return action.map(a=> {
         const email=a.payload.doc.id;
         const f_name=a.payload.doc.data().f_name;
-        console.log(f_name);
         return {
           email, f_name
         }
       })
     }))
-    // console.log(this.friends);
+    console.log(this.user);
     // this.user.subscribe(res =>{
     //   res.forEach( a =>{
     //     this.afs.doc(`users/${a.email}`).get().subscribe(ref =>{
@@ -72,8 +77,8 @@ export class ChatComponent {
     //   }
 
     //   )
-    // })
-    console.log(this.user);
+    //  })
+    // console.log(this.friends);
 
 
 
@@ -100,39 +105,42 @@ export class ChatComponent {
 
 
   
-onContactClick(friend:any){
-  this.currentuser=friend.email;
-      this.postsCol=this.afs.collection(`users/${this.em}/Friends/${friend.email}/messages`, ref => ref.orderBy('timestamp').limit(25));
-      console.log(this.postsCol);
-      this.posts=this.postsCol.snapshotChanges()
+  onContactClick(friend: any){
+    this.currentuser=friend.email;
+    this.postsCol=this.afs.collection(`users/${this.em}/Friends/${friend.email}/messages`, ref => ref.orderBy('timestamp').limit(25));
+    this.posts=this.postsCol.snapshotChanges()
       .pipe(map(actions => {
         return actions.map( a=> {
           const message=a.payload.doc.data().message;
           const email=a.payload.doc.data().email;
           const timestamp=a.payload.doc.data().timestamp;
+          const time=a.payload.doc.data().time;
           console.log(a.payload.doc.data());
-          return {message,email,timestamp};
+          return {message,email,timestamp,time};
         })
       }))
-      // this.posts.pipe(take(1)).subscribe(res =>{
-      //   res.forEach(i => {
-      //     this.messages.push({message:i.message,email:i.email,timestamp:i.timestamp});
-      //   });
-      // })
-}
+    this.afs.doc(`users/${friend.email}`).get().subscribe(ref => {
+      const doc: any = ref.data();
+      this.currentUserFname = doc.FIRST_NAME;
+      this.currentUserUname = "@"+doc.USERNAME;
+    })
+  }
 
-
-
-
-
-
+  getTimeStamp(now: any) {
+    const date = now.getDate();
+    const month = this.month[now.getMonth()];
+    const year = now.getFullYear();
+    const hours = now.getHours();
+    const minutes = now.getMinutes() < 3 ? ("0" + now.getMinutes()) : (now.getMinutes());
+    return (month+" "+date+", "+year+", "+hours+":"+minutes);
+  }
 
   send(){
     if(this.msg!="" && this.msg !=null){
-      const timestamp = new Date().getTime().toString();
-      this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em,message:this.msg,timestamp: timestamp}).then();
-      this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em,message:this.msg,timestamp: timestamp}).then();
-      // this.messages.push({message:this.msg.toString(),email:this.em,timestamp: timestamp});
+      const now = new Date();
+      const timestamp = now.getTime().toString();
+      this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
+      this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
       this.msg="";
     }
   }
