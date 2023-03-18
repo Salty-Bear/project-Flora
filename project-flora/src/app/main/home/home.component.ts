@@ -66,6 +66,7 @@ export class HomeComponent {
 
       this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage});
       this.display=false;
+      this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
       
   }
 
@@ -98,9 +99,10 @@ show() {
 }
 
 onAccept(){
-  console.log(this.doc.sender);
-  this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({});
+  this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({})
   this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({});
   this.display=false;
+  this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
+  this.lettermessage="";
 }
 }

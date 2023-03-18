@@ -49,7 +49,8 @@ export class ChatComponent {
     .pipe(map(actions => {
       return actions.map(a => {
         const email=a.payload.doc.id;
-        const f_name=a.payload.doc.data().f_name;
+        const f_name=a.payload.doc.data().f_name
+        console.log(a);
         return {email,f_name};
       })
     }))
@@ -76,7 +77,6 @@ export class ChatComponent {
 
 
 
-
     // this.afs.doc(`users/${this.em}/Friends/${this.id}/`).get().subscribe(ref => {
     //   console.log(ref);
     //   if(!ref.exists){
@@ -94,6 +94,10 @@ export class ChatComponent {
     //   });
   }
 
+
+
+
+  
 onContactClick(friend:any){
   this.currentuser=friend.email;
       this.postsCol=this.afs.collection(`users/${this.em}/Friends/${friend.email}/messages`, ref => ref.orderBy('timestamp').limit(25));
