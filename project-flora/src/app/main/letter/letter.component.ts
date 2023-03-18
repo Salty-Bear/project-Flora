@@ -57,7 +57,7 @@ export class LetterComponent {
     
     if(this.letter!="" && this.letter!=null ) {
       const letterindata:any=this.letter;
-      this.afs.collection(`users/${this.targetuser}/Letters`).add({message:this.letter,sender:this.em})
+      this.afs.collection(`users/${this.targetuser}/Letters`).add({message:this.letter,sender:this.em,count:5})
       alert("sent successfully")
 
       this.afs.doc(`users/${this.targetuser}`).get().subscribe( res =>{
@@ -65,7 +65,7 @@ export class LetterComponent {
         this.receivername=doc.FIRST_NAME;
         console.log("ok")
         console.log(this.letter);
-        this.afs.collection(`users/${this.em}/myletters`).add({message:letterindata,where:this.receivername});
+        this.afs.collection(`users/${this.em}/myletters`).add({message:letterindata,where:this.receivername,});
       });
     }
     this.letter="";

@@ -14,12 +14,13 @@ import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 export class AboutComponent {
   constructor(public afs: AngularFirestore){};
 
-
+  loader=false;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
   name:string;
   username:string;
 
   ngOnInit() {
+    this.load();
     this.afs.doc(`users/${this.em}`).get().subscribe(ref => {
       console.log(ref);
       if(!ref.exists){
@@ -38,6 +39,14 @@ export class AboutComponent {
       }
       
       });
+
+
       
       }
+      load(){
+        this.loader=true;
+        setTimeout(() =>{
+          this.loader=false;
+        },1000)
+      }      
 }

@@ -1,4 +1,10 @@
-<div class="container-fluid">
+<div class="loaderwindow" *ngIf="loader">
+    <img class="load" src="assets\loader.svg" alt="">
+  </div>
+
+
+
+<div class="container-fluid" *ngIf="!loader">
     <div class="branding mt-4 mb-4">
         <h1 class="head">About</h1>
     </div>
