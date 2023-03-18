@@ -43,6 +43,8 @@ export class ChatComponent {
   messages:{message:string,email:string,timestamp:string}[]=[];
   f: string;
 
+  showTextField: boolean = false;
+
   month: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 
@@ -123,6 +125,7 @@ export class ChatComponent {
       const doc: any = ref.data();
       this.currentUserFname = doc.FIRST_NAME;
       this.currentUserUname = "@"+doc.USERNAME;
+      this.showTextField = true;
     })
   }
 
