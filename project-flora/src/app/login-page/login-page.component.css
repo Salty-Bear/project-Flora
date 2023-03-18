@@ -70,7 +70,6 @@ input.ng-invalid.ng-touched{
     margin-right: 10%;
     min-width: 130px;
     height: 40px;
-    color: #fff;
     padding: 5px 10px;
     font-weight: bold;
     cursor: pointer;
@@ -119,6 +118,8 @@ input.ng-invalid.ng-touched{
     border: 0px;
     background-color: transparent;
     font-weight: bold;
+    font-size: 1.1rem;;
+    padding-right: 0;
 }
 
 .font:hover{

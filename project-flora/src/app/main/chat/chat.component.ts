@@ -53,23 +53,23 @@ export class ChatComponent {
         return {email,f_name};
       })
     }))
-    console.log(this.friends);
-    this.user.subscribe(res =>{
-      res.forEach( a =>{
-        this.afs.doc(`users/${a.email}`).get().subscribe(ref =>{
-          if(!ref.exists){
-            console.log("notfound")// //DOC DOES NOT EXIST
-          }
-          else{
-            const doc:any = ref.data();
-            this.friends.push({email:a.email,f_name:doc.FIRST_NAME})
-          }
+    // console.log(this.friends);
+    // this.user.subscribe(res =>{
+    //   res.forEach( a =>{
+    //     this.afs.doc(`users/${a.email}`).get().subscribe(ref =>{
+    //       if(!ref.exists){
+    //         console.log("notfound")// //DOC DOES NOT EXIST
+    //       }
+    //       else{
+    //         const doc:any = ref.data();
+    //         this.friends.push({email:a.email,f_name:doc.FIRST_NAME})
+    //       }
           
-      })
-      }
+    //   })
+    //   }
 
-      )
-    })
+    //   )
+    // })
     console.log(this.friends);
 
 
