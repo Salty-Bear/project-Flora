@@ -7,14 +7,12 @@
             <p>Your letters</p>
         </div>
         <div class="letters">
-            <div class="letter letter-1">
-                <img src="assets/pfp/pvz.jpeg" alt="">
+            <button class="btn btn-success" *ngFor="let use of user | async">
                 <div class="user-info">
-                    <p class="u-name">@imayush</p>
-                    <p class="r-name">Ayush</p>
+                    <p class="u-name"><img src="assets/pfp/pvz.jpeg" alt=""> @imayush</p>
+                    <p class="r-name">{{use.where}}</p>
                 </div>
-                <p class="duration">Arrived 9h ago</p>
-            </div>
+            </button>
         </div>
     </div>  
 </div>

@@ -26,6 +26,20 @@
     position: absolute;
     margin-left: 30%;
     z-index: 1;
+    background-color: transparent;
+    border: 0px;
+    transition: transform 0.7s ease-in-out;
+    width: 38%;
+    bottom: 13%;
+}
+
+.letterbutton::hover{
+    transition: transform 0.7s ease-in-out;
+}
+
+.btnimg{
+    width: 10%;
+    padding: 0;;
 }
 
 
