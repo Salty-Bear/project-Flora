@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div *ngIf="showTextField" class="message-window">
+        <div #toScroll *ngIf="showTextField" class="message-window">
             <div *ngFor="let message of posts | async">
                 <div *ngIf="message.email==currentuser" class="message friend-message">
                     <strong>{{ message.message }}</strong>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked, ViewChild } from '@angular/core';
 // import { ChatService } from 'src/services/chat.service';
 import { AngularFireList } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -20,6 +20,7 @@ interface friends{
   f_name:string;
 }
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -29,6 +30,7 @@ interface friends{
 
 
 export class ChatComponent {
+  @ViewChild("toScroll") toScroll: any;
   postsCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
   msg:string;
@@ -53,6 +55,16 @@ export class ChatComponent {
   loader=true;
   constructor(public afs: AngularFirestore) {}
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
+
+  // ngAfterViewChecked() {
+  //   console.log(1);
+  //   this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
+  // }
+
+  // load(){
+  //   this.loader=true;
+    
+  // }
 
   ngOnInit() {
     this.load();
@@ -115,7 +127,6 @@ export class ChatComponent {
     },3000)
   }
 
-  
   onContactClick(friend: any){
     this.currentuser=friend.email;
     this.postsCol=this.afs.collection(`users/${this.em}/Friends/${friend.email}/messages`, ref => ref.orderBy('timestamp').limitToLast(25));
@@ -127,6 +138,7 @@ export class ChatComponent {
           const timestamp=a.payload.doc.data().timestamp;
           const time=a.payload.doc.data().time;
           console.log(a.payload.doc.data());
+          this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
           return {message,email,timestamp,time};
         })
       }))
@@ -136,6 +148,10 @@ export class ChatComponent {
       this.currentUserUname = "@"+doc.USERNAME;
       this.showTextField = true;
     })
+    setTimeout(() =>{
+      console.log("1");
+      this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
+    },2000)
   }
 
   getTimeStamp(now: any) {
@@ -154,7 +170,6 @@ export class ChatComponent {
       this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
       this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
       this.msg="";
-
     }
   }
 }

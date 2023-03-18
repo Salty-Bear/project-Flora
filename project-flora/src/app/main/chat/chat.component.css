@@ -24,6 +24,7 @@
     background-color: #9DC08B;
     border-radius: 15px 0 0 15px;
     padding: 0 2% 0 2%;
+    overflow-y: auto;
 }
 
 .heading {
@@ -101,7 +102,7 @@ p {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    overflow-y: scroll !important;
+    overflow-y: auto;
     min-height: 77vh;
 }
 
@@ -110,6 +111,7 @@ p {
     border-radius: 10px;
     border-bottom-left-radius: 0%;
     background-color: #3D8361;
+    word-break: break-all;
 }
 
 .user-message > strong {
@@ -117,9 +119,11 @@ p {
     border-radius: 10px;
     border-bottom-right-radius: 0%;
     background-color: #3D8361;
+    word-break: break-all;
 }
 
 .friend-message {
+    overflow-wrap: break-word;
     word-wrap: break-word;
     float: left;
     display: flex;
@@ -133,6 +137,7 @@ p {
 
 .user-message {
     word-wrap: break-word;
+    overflow-wrap: break-word;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -196,9 +201,9 @@ input {
     background-color: #ABC270;
     border-radius: 15px;
 
-  }
+}
 
-  .load{
+.load{
     margin-left: 25%;
     margin-top: 1%;
-  }
+}
