@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable, map } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs';
 
-interface Letter{
-  message: string;
-  sender: string;
+
+interface message{
+  message:string;
+  where:string;
 }
+
 
 @Component({
   selector: 'app-my-letters',
@@ -13,30 +17,30 @@ interface Letter{
   styleUrls: ['./my-letters.component.css']
 })
 
-export class MyLettersComponent {
-  lettersCol: AngularFirestoreCollection<Letter>;
-  letters: Observable<Letter[]>;
 
-  constructor(public afs: AngularFirestore) {}
+
+export class MyLettersComponent {
+  constructor (public afs: AngularFirestore) {}
+  userlist: AngularFirestoreCollection<message>;
+  user: Observable<message[]>;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
 
-  retrieveLetters() {
-    this.lettersCol=this.afs.collection(`users/${this.em}/Letters`);
-    this.letters=this.lettersCol.snapshotChanges()
+
+  ngOnInit(){
+    
+    this.userlist = this.afs.collection(`users/${this.em}/myletters`);
+    this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
-      return actions.map( a=> {
+      return actions.map(a => {
         const message=a.payload.doc.data().message;
-        const sender=a.payload.doc.data().sender;
-        console.log(a.payload.doc.data());
-        return {message, sender};
+        const where=a.payload.doc.data().where;
+        console.log(message);
+        return { message,where};
       })
-    }))
+    }));
+    this.user.subscribe(res => console.log(res));
   }
-  
- ngOnInit() {
-  console.log(this.em);
-  this.retrieveLetters();
- }
+
 
 }

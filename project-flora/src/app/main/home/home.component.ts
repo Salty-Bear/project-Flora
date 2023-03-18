@@ -50,6 +50,7 @@ export class HomeComponent {
 
 
   sendletter(){
+    const ok=this.afs.collection(`users/${this.em}/Letters`).get();
     this.userlist1 = this.afs.collection('users');
     this.user1 = this.userlist.snapshotChanges()
       .pipe(map(actions => {
