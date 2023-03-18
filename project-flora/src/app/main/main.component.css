@@ -31,14 +31,27 @@
     background-color:#ABC270; 
     border-radius: 0px;
     line-height: 200%;
+    transition: 0.4s;
+}
+
+p.nav-buttons {
+    transition: 0.4s;
+}
+
+p.nav-buttons:hover {
+    transform: translateX(10%);
+    transition-duration: 250ms;
+    /* transition: 0.4s; */
 }
 
 
 .btn-outline-success:hover{
     background-color:#D6CDA4;
-    padding-left: 20%;
-}
+    /* padding-left: 20%; */
+    transform: translateY(-0.1rem);
+    transition-duration: 250ms;
 
+}
 
 .btn-outline-success:active{
     background-color: #1C6758;
@@ -67,12 +80,12 @@
 
 .pfp{
     position: absolute;
-    border-radius: 50%;
-    left:23%;
+    border-radius: 3%;
+    left:20%;
     top: 5%;
     width: 60%;
-    border-style: double;
-    border-width: 6%;
+    /* border-style: double; */
+    border-width: 0%;
     z-index: 1;
 }
 .imagebackground{
@@ -88,7 +101,7 @@
     color: #3D8361;
     position: absolute;
     /* border-top: 1px solid rgba(0,0,0,0.08); */
-    bottom: 5%;
+    bottom: 4%;
     text-align: center;
     width: 100%;
     margin-top: 5%;
@@ -134,8 +147,9 @@ transform: scale(1.05);
     position: absolute;
     top:25%;
     left: 30%;
-    font-weight: 800;
-    font-family: cursive;
+    margin-top: 10px;
+    font-weight: 700;
+    font-family: "Tilt Neon";
     color: #1C6758;
 }
 

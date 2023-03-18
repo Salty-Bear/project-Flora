@@ -70,7 +70,6 @@ export class ChatComponent {
 
       )
     })
-    console.log(this.friends);
 
 
 
@@ -97,6 +96,7 @@ export class ChatComponent {
 onContactClick(friend:any){
   this.currentuser=friend.email;
       this.postsCol=this.afs.collection(`users/${this.em}/Friends/${friend.email}/messages`, ref => ref.orderBy('timestamp').limit(25));
+      console.log(this.postsCol);
       this.posts=this.postsCol.snapshotChanges()
       .pipe(map(actions => {
         return actions.map( a=> {
