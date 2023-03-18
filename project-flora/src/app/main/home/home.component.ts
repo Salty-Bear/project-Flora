@@ -40,6 +40,19 @@ export class HomeComponent {
   user1: Observable<userlist1[]>;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
+  ngOnInit(){
+    this.userlist = this.afs.collection(`users/${this.em}/Letters`);
+    this.user = this.userlist.snapshotChanges()
+    .pipe(map(actions => {
+      return actions.map(a => {
+        const content=a.payload.doc.id;
+        console.log(content);
+        return { content};
+      })
+    }));
+  }
+
+
   gettar(res:any){
     this.target=Math.floor((Math.random()*res.length)%res.length);
     while(res[this.target].id == this.em) {
@@ -50,7 +63,6 @@ export class HomeComponent {
 
 
   sendletter(){
-    const ok=this.afs.collection(`users/${this.em}/Letters`).get();
     this.userlist1 = this.afs.collection('users');
     this.user1 = this.userlist.snapshotChanges()
       .pipe(map(actions => {

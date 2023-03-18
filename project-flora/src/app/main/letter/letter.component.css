@@ -6,6 +6,7 @@
     border-radius: 2%;
     padding: 10rem;
     padding-top: 1rem;
+    max-height: 97vh;
 }
 
 
@@ -41,4 +42,9 @@
     box-shadow: 0px 0.1em 0.2em rgb(28 103 88 / 40%), 0px 0.4em 0.7em -0.1em rgb(28 103 88 / 30%), inset 0px -0.1em 0px #1c67584d;
     transform: translateY(-0.3rem);
     transition-duration: 250ms;
+}
+
+textarea{
+    font-size:20px;
+    font-family: Roboto;
 }
