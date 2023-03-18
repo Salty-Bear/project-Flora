@@ -83,24 +83,31 @@ show() {
   this.user.subscribe(res =>{
     this.uid=res[0].content;
     this.afs.doc(`users/${this.em}/Letters/${this.uid}`).get().subscribe( ref =>{
-      if(!ref.exists){
+      if(!ref.exists) {
         console.log("notfound")// //DOC DOES NOT EXIST
-        }
-        else{
+      }
+      else {
         this.doc = ref.data();
         this.lettermessage = this.doc.message;
         console.log(this.lettermessage) //LOG ENTIRE DOC
-          }
+      }
     })
   })
 
   this.display=true;
 }
 
-onAccept(){
-  console.log(this.doc.sender);
-  this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({});
-  this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({});
-  this.display=false;
-}
+  getFname(email: string) {
+    this.afs.doc(`users/${email}`).get().subscribe(ref => {
+      const doc:any = ref.data();
+      return doc.FIRST_NAME;
+    })
+  }
+
+  onAccept(){
+    console.log(this.doc.sender);
+    this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: this.getFname(this.doc.sender)});
+    this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: this.getFname(this.em)});
+    this.display=false;
+  }
 }

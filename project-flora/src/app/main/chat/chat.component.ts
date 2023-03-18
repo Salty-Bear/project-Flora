@@ -6,6 +6,7 @@ import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, timeInterval } from 'rxjs';
 import { map, take } from 'rxjs';
 import { orderBy, limit } from 'firebase/firestore';
+import { EmailAuthProvider } from 'firebase/auth';
 
 interface Post{
   message:string;
@@ -36,6 +37,7 @@ export class ChatComponent {
   user: Observable<friends[]>;
   currentuser:string;
   messages:{message:string,email:string,timestamp:string}[]=[];
+  f: string;
 
 
   constructor(public afs: AngularFirestore) {}
@@ -43,14 +45,15 @@ export class ChatComponent {
 
   ngOnInit() {
     this.userlist=this.afs.collection(`users/${this.em}/Friends`);
-
-
-    this.user = this.userlist.snapshotChanges()
-    .pipe(map(actions => {
-      return actions.map(a => {
+    this.user= this.userlist.snapshotChanges()
+    .pipe(map(action=>{
+      return action.map(a=> {
         const email=a.payload.doc.id;
         const f_name=a.payload.doc.data().f_name;
-        return {email,f_name};
+        console.log(f_name);
+        return {
+          email, f_name
+        }
       })
     }))
     // console.log(this.friends);
@@ -70,7 +73,7 @@ export class ChatComponent {
 
     //   )
     // })
-    console.log(this.friends);
+    console.log(this.user);
 
 
 
