@@ -98,7 +98,6 @@ show() {
   this.display=true;
 }
 
-<<<<<<< HEAD
   getFname(email: string) {
     this.afs.doc(`users/${email}`).get().subscribe(ref => {
       const doc:any = ref.data();
@@ -111,14 +110,7 @@ show() {
     this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: this.getFname(this.doc.sender)});
     this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: this.getFname(this.em)});
     this.display=false;
-  }
-=======
-onAccept(){
-  this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({})
-  this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({});
-  this.display=false;
-  this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
+    this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
   this.lettermessage="";
-}
->>>>>>> 32bb01c29a3ebd13aff73ab0ae70df0d132d4409
+  }
 }

@@ -49,17 +49,11 @@ export class ChatComponent {
     .pipe(map(action=>{
       return action.map(a=> {
         const email=a.payload.doc.id;
-<<<<<<< HEAD
         const f_name=a.payload.doc.data().f_name;
         console.log(f_name);
         return {
           email, f_name
         }
-=======
-        const f_name=a.payload.doc.data().f_name
-        console.log(a);
-        return {email,f_name};
->>>>>>> 32bb01c29a3ebd13aff73ab0ae70df0d132d4409
       })
     }))
     // console.log(this.friends);
