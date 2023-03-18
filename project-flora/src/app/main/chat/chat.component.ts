@@ -43,13 +43,10 @@ export class ChatComponent {
   messages:{message:string,email:string,timestamp:string}[]=[];
   f: string;
 
-<<<<<<< HEAD
   showTextField: boolean = false;
-=======
 
   element = document.getElementsByClassName('message-window'); // Replace 'myElement' with the ID of your element
 
->>>>>>> b005d2c6f36bb71b7ae727c37a314b9d006a09d0
 
   month: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 

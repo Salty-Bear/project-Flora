@@ -1,6 +1,6 @@
-* {
+/* * {
     border: 1px solid red;
-}
+} */
 
 .container-fluid {
     background-color: #cfdad2;
@@ -23,7 +23,7 @@
     max-width: 22vw;
     background-color: #9DC08B;
     border-radius: 15px 0 0 15px;
-    margin-right: 2%;
+    padding: 0 2% 0 2%;
 }
 
 .heading {
@@ -67,7 +67,6 @@ p {
 
 .name {
     font-family: 'Tilt Neon';
-    /* font-size: large; */
 }
 
 .time {
@@ -103,18 +102,18 @@ p {
     flex-direction: column;
     flex-grow: 1;
     overflow-y: scroll !important;
-    max-height: 80vh;
+    min-height: 77vh;
 }
 
 .friend-message > strong {
-    padding: 2% 2% 2% 2%;
+    padding: 4% 4% 4% 4%;
     border-radius: 10px;
     border-bottom-left-radius: 0%;
     background-color: #3D8361;
 }
 
 .user-message > strong {
-    padding: 2% 3% 2% 2%;
+    padding: 4% 4% 4% 4%;
     border-radius: 10px;
     border-bottom-right-radius: 0%;
     background-color: #3D8361;
@@ -125,7 +124,8 @@ p {
     float: left;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: start;
+    text-align: start;
     margin-bottom: 1%;
     font-family: "Roboto";
     max-width: 40%;
@@ -135,7 +135,8 @@ p {
     word-wrap: break-word;
     display: flex;
     flex-direction: column;
-    text-align: end;
+    align-items: end;
+    text-align: start;
     gap: 10%;
     float: right;
     margin-bottom: 1%;
