@@ -60,7 +60,7 @@ export class HomeComponent {
     this.load(); //calling loader in home page
 
 
-    this.userlist = this.afs.collection(`users/${this.em}/Letters`);
+    this.userlist = this.afs.collection(`users/${this.em}/letters`);
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
       return actions.map(a => {
@@ -74,14 +74,23 @@ export class HomeComponent {
   gettar(res:any){
     console.log(res);
     this.target=Math.floor((Math.random()*res.length)%res.length);
-    while(res[this.target].id == this.em) {
+    while(res[this.target].id == this.sender) {
       this.target=Math.floor((Math.random()*res.length)%res.length);
     }
     this.targetuser=res[this.target].id;
     console.log(this.count)
+    console.log(this.targetuser)
+    this.afs.doc(`users/${this.em}/letters/${this.uid}`).delete();
+    alert("sucess")
     this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
+    console.log(this.uid);
+    
     this.display=false;
-    this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
+
+
+
+    
+    
   }
 
 
@@ -101,7 +110,7 @@ export class HomeComponent {
 
 
 show() {
-  // this.userlist = this.afs.collection(`users/${this.em}/Letters`);
+  // this.userlist = this.afs.collection(`users/${this.em}/letters`);
   // this.user = this.userlist.snapshotChanges()
   // .pipe(map(actions => {
   //   return actions.map(a => {
@@ -110,8 +119,9 @@ show() {
   //   })
   // }));
   this.user.subscribe(res =>{
+    console.log(res);
     this.uid=res[0].content;
-    this.afs.doc(`users/${this.em}/Letters/${this.uid}`).get().subscribe( ref =>{
+    this.afs.doc(`users/${this.em}/letters/${this.uid}`).get().subscribe( ref =>{
       if(!ref.exists) {
         console.log("notfound")// //DOC DOES NOT EXIST
       }
@@ -147,7 +157,7 @@ show() {
     this.getSenderFname(this.doc.sender);
     this.getUserFname(this.em);
     this.display=false;
-    this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
+    this.afs.doc(`users/${this.em}/letters/${this.uid}`).delete();
     this.lettermessage="";
   }
 }
