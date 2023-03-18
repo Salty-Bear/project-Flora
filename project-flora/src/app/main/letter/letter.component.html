@@ -1,11 +1,16 @@
-<div class="container-fluid">
+<div class="loaderwindow" *ngIf="loader">
+  <img class="load" src="assets\loader.svg" alt="">
+</div>
+
+
+<div class="container-fluid" *ngIf="!loader">
   <br>
     <h1 class="fancy"><u>Write Your letter</u></h1>
     <br>
     <br>
     <form action="">
           <div class="mb-3">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="13" [(ngModel)]="letter" name="letter"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="13" [(ngModel)]="letter" name="letter" maxlength="450"></textarea>
             <br>
             <button class="btn" (click)="sendletter()" >Send</button>
           </div>

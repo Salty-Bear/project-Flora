@@ -22,6 +22,9 @@ interface userlist1{
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
+
 export class HomeComponent {
   constructor (public afs: AngularFirestore) {}
   doc:any;
@@ -30,6 +33,17 @@ export class HomeComponent {
   lettermessage="";
   target:any;
   targetuser:any;
+  loader=true;
+  count:number;
+  sender:string;
+
+  load(){
+    this.loader=true;
+    setTimeout(() =>{
+      this.loader=false;
+    },5500)
+  }
+
 
 
   closePanel() {
@@ -42,19 +56,38 @@ export class HomeComponent {
   user1: Observable<userlist1[]>;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
+  ngOnInit(){
+    this.load(); //calling loader in home page
+
+
+    this.userlist = this.afs.collection(`users/${this.em}/Letters`);
+    this.user = this.userlist.snapshotChanges()
+    .pipe(map(actions => {
+      return actions.map(a => {
+        const content=a.payload.doc.id;
+        return { content};
+      })
+    }));
+  }
+
+
   gettar(res:any){
+    console.log(res);
     this.target=Math.floor((Math.random()*res.length)%res.length);
     while(res[this.target].id == this.em) {
       this.target=Math.floor((Math.random()*res.length)%res.length);
     }
     this.targetuser=res[this.target].id;
+    console.log(this.count)
+    this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
+    this.display=false;
+    this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
   }
 
 
   sendletter(){
-    const ok=this.afs.collection(`users/${this.em}/Letters`).get();
     this.userlist1 = this.afs.collection('users');
-    this.user1 = this.userlist.snapshotChanges()
+    this.user1 = this.userlist1.snapshotChanges()
       .pipe(map(actions => {
         return actions.map(a => {
           const id=a.payload.doc.id;
@@ -62,27 +95,20 @@ export class HomeComponent {
         })
       }));
 
-     this.user.subscribe(res =>
-      this.gettar(res))
-
-
-      this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage});
-      this.display=false;
-      this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
-      
+     this.user1.subscribe(res =>
+      this.gettar(res))      
   }
 
 
 show() {
-  this.userlist = this.afs.collection(`users/${this.em}/Letters`);
-  this.user = this.userlist.snapshotChanges()
-  .pipe(map(actions => {
-    return actions.map(a => {
-      const content=a.payload.doc.id;
-      console.log(content);
-      return { content};
-    })
-  }));
+  // this.userlist = this.afs.collection(`users/${this.em}/Letters`);
+  // this.user = this.userlist.snapshotChanges()
+  // .pipe(map(actions => {
+  //   return actions.map(a => {
+  //     const content=a.payload.doc.id;
+  //     return { content};
+  //   })
+  // }));
   this.user.subscribe(res =>{
     this.uid=res[0].content;
     this.afs.doc(`users/${this.em}/Letters/${this.uid}`).get().subscribe( ref =>{
@@ -92,7 +118,10 @@ show() {
       else {
         this.doc = ref.data();
         this.lettermessage = this.doc.message;
-        console.log(this.lettermessage) //LOG ENTIRE DOC
+        this.count=this.doc.count;
+        this.sender=this.doc.sender;
+
+        console.log(this.sender) //LOG ENTIRE DOC
       }
     })
   })

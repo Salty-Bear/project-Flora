@@ -23,6 +23,10 @@ export class LetterComponent {
 
 
   };
+
+  loader=true;
+
+
   userlist: AngularFirestoreCollection<userlist1>;
   user: Observable<userlist1[]>;
   target:any;
@@ -30,6 +34,17 @@ export class LetterComponent {
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
   letter:any;
   receivername:string;
+  ngOnInit(){
+   this.load();
+  }
+
+  
+  load(){
+    this.loader=true;
+    setTimeout(() =>{
+      this.loader=false;
+    },1300)
+  }
 
   gettar(res:any){
     this.target=Math.floor(Math.random() * (res.length) );
@@ -42,7 +57,7 @@ export class LetterComponent {
     
     if(this.letter!="" && this.letter!=null ) {
       const letterindata:any=this.letter;
-      this.afs.collection(`users/${this.targetuser}/Letters`).add({message:this.letter,sender:this.em})
+      this.afs.collection(`users/${this.targetuser}/Letters`).add({message:this.letter,sender:this.em,count:5})
       alert("sent successfully")
 
       this.afs.doc(`users/${this.targetuser}`).get().subscribe( res =>{
@@ -50,7 +65,7 @@ export class LetterComponent {
         this.receivername=doc.FIRST_NAME;
         console.log("ok")
         console.log(this.letter);
-        this.afs.collection(`users/${this.em}/myletters`).add({message:letterindata,where:this.receivername});
+        this.afs.collection(`users/${this.em}/myletters`).add({message:letterindata,where:this.receivername,});
       });
     }
     this.letter="";

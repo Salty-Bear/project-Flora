@@ -1,15 +1,23 @@
-<div class="container-fluid">
+<div class="loaderwindow" *ngIf="loader">
+</div>
+
+
+
+<div class="container-fluid" *ngIf="!loader">
     <video class="img-fluid" autoplay playsinline loop muted poster="assets\Home\alt.jpg">
     <source src="assets\Home\back.mp4" type="video/mp4">
     </video>
-    <img src="assets\Home\Tree.png" alt="" class="tree">      
+ 
+    <div class="container-fluid" *ngIf="loader">
+        <img class="load" src="assets\Home\loader.gif" alt="">
+    </div>
     
-    
-
-    <button class="letterbutton" (click)="show()"><img class="btnimg" src="assets\Home\lotus.png" alt=""></button>
-
+    <div class="butdiv">
+    <button class="letterbutton" (click)="show()" *ngFor="let lotus of user | async"><img class="btnimg" src="assets\Home\lotushover.png" alt=""></button>
+    </div>
 
     <div class="container-fluidletter" *ngIf="display" >
+
         <p>{{lettermessage}}</p>
         <button type="button"(click)="closePanel()" class="btn-close" aria-label="Close"></button>
         <div class="buttonlay">

@@ -1,27 +1,30 @@
-<div class="container-fluid ">
+<div class="loaderwindow" *ngIf="loader">
+    <img class="load" src="assets\loader.svg" alt="">
+  </div>
+  
+
+<div class="container-fluid" *ngIf="!loader">
     <div class="'first">
         
-        <form>
             <h1 class="fancy">Settings</h1>
             <label for="exampleInputEmail1" class="form-label">Name</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="name">
             <div id="emailHelp" class="form-text">Help people discover your account by using the name you're known by: either your full name, nickname, or business name</div>
             <label for="exampleInputEmail1" class="form-label">Password</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="password">
 
             
             <label for="exampleInputEmail1" class="form-label">Website</label>
-            <input type="text" class="form-control" id="exampleInputEmail1">
+            <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="website">
     
             <label for="exampleFormControlTextarea1" class="form-label">Bio</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="bio"></textarea >
             <p class="heading">Personal Information</p>
             <div id="emailHelp" class="form-text second">Provide your personal information, even if the account is used for a business, a pet or something else. This won't be a part of your public profile.</div>
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="text" class="form-control" id="exampleInputEmail1">
+
 
             <label for="inputState" class="form-label">Gender</label>
-            <select id="inputState" class="form-select">
+            <select id="inputState" class="form-select" [(ngModel)]="gender">
                 <option>Male</option>
                 <option>Female</option>
                 <option>Combo</option>
@@ -30,8 +33,7 @@
                 <option>hai kuch abhi pta ni chla hai</option>
             </select>
             <br>
-            <button type="submit" class="btn">Submit</button>
-        </form>
+            <button type="submit" class="btn" (click)="submit()">Submit</button>
     </div>
     
     <div class="second">

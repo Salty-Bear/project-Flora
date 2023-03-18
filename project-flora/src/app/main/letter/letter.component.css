@@ -6,6 +6,7 @@
     border-radius: 2%;
     padding: 10rem;
     padding-top: 1rem;
+    max-height: 97vh;
 }
 
 
@@ -42,3 +43,25 @@
     transform: translateY(-0.3rem);
     transition-duration: 250ms;
 }
+
+textarea{
+    font-size:20px;
+    font-family: Roboto;
+}
+
+
+
+  
+
+  .loaderwindow{
+    min-height: 97vh;
+    max-height: 100vh;
+    background-color: #ABC270;
+    border-radius: 15px;
+
+  }
+
+  .load{
+    margin-left: 25%;
+    margin-top: 1%;
+  }

@@ -50,7 +50,7 @@
     justify-content: center;
 }
 
-img {
+.ok {
     width: 85%;
     border-radius: 60%;
 }
@@ -189,4 +189,15 @@ input {
     transition-duration: 250ms;
 }
 
+.loaderwindow{
+    min-height: 97vh;
+    max-height: 100vh;
+    background-color: #ABC270;
+    border-radius: 15px;
 
+  }
+
+  .load{
+    margin-left: 25%;
+    margin-top: 1%;
+  }

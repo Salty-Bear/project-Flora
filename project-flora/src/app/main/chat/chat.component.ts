@@ -43,15 +43,22 @@ export class ChatComponent {
   messages:{message:string,email:string,timestamp:string}[]=[];
   f: string;
 
+<<<<<<< HEAD
   showTextField: boolean = false;
+=======
+
+  element = document.getElementsByClassName('message-window'); // Replace 'myElement' with the ID of your element
+
+>>>>>>> b005d2c6f36bb71b7ae727c37a314b9d006a09d0
 
   month: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
-
+  loader=true;
   constructor(public afs: AngularFirestore) {}
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
   ngOnInit() {
+    this.load();
     this.userlist=this.afs.collection(`users/${this.em}/Friends`);
     this.user= this.userlist.snapshotChanges()
     .pipe(map(action=>{
@@ -104,7 +111,12 @@ export class ChatComponent {
   }
 
 
-
+  load(){
+    this.loader=true;
+    setTimeout(() =>{
+      this.loader=false;
+    },3000)
+  }
 
   
   onContactClick(friend: any){
@@ -145,6 +157,7 @@ export class ChatComponent {
       this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
       this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
       this.msg="";
+
     }
   }
 }
