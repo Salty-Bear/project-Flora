@@ -143,6 +143,9 @@ transform: scale(1.05);
 
 
 .profilename{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
     position: absolute;
     top:25%;
