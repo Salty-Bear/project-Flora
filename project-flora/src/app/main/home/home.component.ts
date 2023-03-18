@@ -107,10 +107,10 @@ show() {
 
   onAccept(){
     console.log(this.doc.sender);
-    this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: this.getFname(this.doc.sender)});
-    this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: this.getFname(this.em)});
+    this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: "asodasd"});
+    this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: "oaksdasd"});
     this.display=false;
     this.afs.doc(`users/${this.em}/Letters/${this.uid}`).delete();
-  this.lettermessage="";
+    this.lettermessage="";
   }
 }
