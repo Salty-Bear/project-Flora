@@ -1,4 +1,9 @@
-<div class="container-fluid">
+<div class="loaderwindow" *ngIf="loader">
+  <img class="load" src="assets\loader.svg" alt="">
+</div>
+
+
+<div class="container-fluid" *ngIf="!loader">
   <br>
     <h1 class="fancy"><u>Write Your letter</u></h1>
     <br>

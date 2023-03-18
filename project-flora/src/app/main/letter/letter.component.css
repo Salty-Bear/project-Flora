@@ -48,3 +48,20 @@ textarea{
     font-size:20px;
     font-family: Roboto;
 }
+
+
+
+  
+
+  .loaderwindow{
+    min-height: 97vh;
+    max-height: 100vh;
+    background-color: #ABC270;
+    border-radius: 15px;
+
+  }
+
+  .load{
+    margin-left: 25%;
+    margin-top: 1%;
+  }

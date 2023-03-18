@@ -1,4 +1,10 @@
-<div class="container-fluid ">
+<div class="loaderwindow" *ngIf="loader">
+    <img class="load" src="assets\loader.svg" alt="">
+  </div>
+  
+
+
+<div class="container-fluid " *ngIf="!loader">
     <div class="side-left">
         <img src="assets\Settings\wallpaper.jpg" class="img-fluid" alt="Responsive image">
     </div>
@@ -9,7 +15,7 @@
         <div class="letters">
             <button class="btn btn-success" *ngFor="let use of user | async">
                 <div class="user-info">
-                    <p class="u-name"><img src="assets/pfp/pvz.jpeg" alt=""> @imayush</p>
+                    <p class="u-name"><img class="ok" src="assets/pfp/pvz.jpeg" alt=""> @imayush</p>
                     <p class="r-name">{{use.where}}</p>
                 </div>
             </button>

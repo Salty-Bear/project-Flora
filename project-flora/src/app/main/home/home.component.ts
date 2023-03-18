@@ -22,6 +22,9 @@ interface userlist1{
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
+
 export class HomeComponent {
   constructor (public afs: AngularFirestore) {}
   doc:any;
@@ -30,6 +33,15 @@ export class HomeComponent {
   lettermessage="";
   target:any;
   targetuser:any;
+  loader=true;
+
+  load(){
+    this.loader=true;
+    setTimeout(() =>{
+      this.loader=false;
+    },5500)
+  }
+
 
 
   closePanel() {
@@ -43,6 +55,9 @@ export class HomeComponent {
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
   ngOnInit(){
+    this.load(); //calling loader in home page
+
+
     this.userlist = this.afs.collection(`users/${this.em}/Letters`);
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {

@@ -6,6 +6,17 @@
     background-color: black;
 }
 
+.loaderwindow{
+    min-height: 97vh;
+    max-height: 100vh;
+    background-color: black;
+    border-radius: 15px;
+    background-image: url("src\assets\Home\loader.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 60%;
+}
+
 .img-fluid{
     position: absolute;
     width: 100%;
@@ -36,7 +47,6 @@
 .butdiv{
     position: absolute;
     width: 45%;
-    border: 2px solid red;
     z-index: 1;
     bottom: 11%;
     left: 50%;
@@ -111,3 +121,8 @@ p{
     background-repeat: no-repeat;
     overflow-wrap: break-word;
 }
+
+.loader{
+
+}
+

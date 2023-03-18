@@ -1,9 +1,15 @@
-<div class="container-fluid">
+<div class="loaderwindow" *ngIf="loader">
+    <img class="load" src="assets\loader.svg" alt="">
+  </div>
+  
+
+
+<div class="container-fluid" *ngIf="!loader">
     <div class="friends-list">
         <div class="heading">Chats</div>
         <div class="friend" *ngFor="let friend of user | async let index=index;" [attr.data-index]="index" (click)="onContactClick(friend)">
             <div class="image">
-                <img src="assets/pfp/pvz.jpeg" alt="">
+                <img class="ok" src="assets/pfp/pvz.jpeg" alt="">
             </div>
             <div class="wrapper">
                 <p class="name">{{friend.f_name}}</p>

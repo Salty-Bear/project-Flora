@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
+  loader=false;
+  ngOnInit(){
+    this.load();
+  }
 
+  
+  load(){
+    this.loader=true;
+    setTimeout(() =>{
+      this.loader=false;
+    },1000)
+  }
 }

@@ -1,4 +1,9 @@
-<div class="container-fluid ">
+<div class="loaderwindow" *ngIf="loader">
+    <img class="load" src="assets\loader.svg" alt="">
+  </div>
+  
+
+<div class="container-fluid" *ngIf="!loader">
     <div class="'first">
         
         <form>

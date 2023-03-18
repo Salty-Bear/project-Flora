@@ -23,6 +23,10 @@ export class LetterComponent {
 
 
   };
+
+  loader=true;
+
+
   userlist: AngularFirestoreCollection<userlist1>;
   user: Observable<userlist1[]>;
   target:any;
@@ -30,6 +34,17 @@ export class LetterComponent {
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
   letter:any;
   receivername:string;
+  ngOnInit(){
+   this.load();
+  }
+
+  
+  load(){
+    this.loader=true;
+    setTimeout(() =>{
+      this.loader=false;
+    },1300)
+  }
 
   gettar(res:any){
     this.target=Math.floor(Math.random() * (res.length) );
