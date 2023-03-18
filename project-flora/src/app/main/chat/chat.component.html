@@ -9,9 +9,6 @@
                 <p class="name">{{friend.f_name}}</p>
                 <p class="last-message">Hello</p>
             </div>
-            <div class="time">
-                2:15
-            </div>
         </div>    
     </div>
     
@@ -21,17 +18,20 @@
                 <img src="assets/pfp/pvz.jpeg" alt="">
             </div>
             <div class="name">
-                <p>Ayush</p>
+                <h4 class="currentUserFname">{{ currentUserFname }}</h4>
+                <p class="currentUserUname">{{ currentUserUname }}</p>
             </div>
         </div>
 
         <div class="message-window">
-            <div *ngFor="let message of posts | async "  >
-                <div>
-                    <strong>{{ message.email }}</strong>
-                    <br>
-                    {{ message.message }}
-                    {{message.timestamp }}
+            <div *ngFor="let message of posts | async">
+                <div *ngIf="message.email==currentuser" class="friend-message">
+                    <strong>{{ message.message }}</strong>
+                    <p>{{ message.time }}</p>
+                </div>
+                <div *ngIf="message.email==em" class="user-message">
+                    <strong>{{ message.message }}</strong>
+                    <p>{{ message.time }}</p>
                 </div>
             </div>
         </div>
