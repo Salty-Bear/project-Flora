@@ -84,13 +84,7 @@ export class HomeComponent {
     alert("sucess")
     if(this.count!=0) this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
     console.log(this.uid);
-    
     this.display=false;
-
-
-
-    
-    
   }
 
 

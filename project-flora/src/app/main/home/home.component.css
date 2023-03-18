@@ -41,6 +41,14 @@
     border-color: transparent;
 }
 
+.letterbutton:hover{
+    transform: translateY(-0.1rem);
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+
 
 
 
