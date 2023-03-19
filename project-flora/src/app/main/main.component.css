@@ -143,19 +143,23 @@ transform: scale(1.05);
 
 
 .profilename{
-    display: flex;
-    z-index: 1;
-    position: absolute;
-    top: 25%;
-    left: 30%;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    font-weight: 700;
-    font-family: "Tilt Neon";
-    color: #1C6758;
+    z-index: 4;
+    position:relative;
+    font-size: 200%;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: 800;
 }
 
+.namena{
+    position: absolute;
+    z-index: inherit;
+    top: 28%;
+    width: 80%;
+    left: 10%;
+    border: 2px solid red;
+    height: 5%;
+}
 
 
 

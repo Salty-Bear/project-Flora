@@ -51,15 +51,10 @@ export class MainComponent {
       }
 
       fetchimg(){
-        this.af.ref('users/aryamanraj123456789@gmail.com/[object File]').getDownloadURL().subscribe(url =>{
+        this.af.ref(`users/${this.em}/[object File]`).getDownloadURL().subscribe(url =>{
           console.log(url);
           this.img=url;
           console.log(this.img);
         });
-
     }
-
-
-
-
   }
