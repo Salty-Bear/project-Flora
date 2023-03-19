@@ -118,7 +118,7 @@ export class ChatComponent {
     this.loader=true;
     setTimeout(() =>{
       this.loader=false;
-    },3)
+    },3000)
   }
 
   onContactClick(friend: any){
@@ -156,7 +156,7 @@ export class ChatComponent {
     const minutes = now.getMinutes() < 3 ? ("0" + now.getMinutes()) : (now.getMinutes());
     return (month+" "+date+", "+year+", "+hours+":"+minutes);
   }
-  
+
   send(){
     if(this.msg!="" && this.msg !=null){
       const now = new Date();
