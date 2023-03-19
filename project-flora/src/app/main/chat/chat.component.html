@@ -7,15 +7,18 @@
 <div class="container-fluid" *ngIf="!loader">
     <div class="friends-list">
         <div class="heading">Chats</div>
-        <div class="friend" *ngFor="let friend of user | async let index=index;" [attr.data-index]="index" (click)="onContactClick(friend)">
-            <div class="image">
-                <img class="ok" src="assets/pfp/pvz.jpeg" alt="">
-            </div>
-            <div class="wrapper">
-                <p class="name">{{friend.f_name}}</p>
-                <p class="last-message">Hello</p>
-            </div>
-        </div>    
+        <div class="cover">
+            <div class="friend" *ngFor="let friend of user | async let index=index;" [attr.data-index]="index" (click)="onContactClick(friend)">
+                <div class="image">
+                    <img class="ok" src="assets/pfp/pvz.jpeg" alt="">
+                </div>
+                <div class="wrapper">
+                    <p class="name">{{ friend.f_name }}</p>
+                    <p class="last-message">{{ friend.last_message }}</p>
+                </div>
+                <div class="time">{{ friend.time }}</div>
+            </div>   
+        </div> 
     </div>
     
     <div class="chat-window">

@@ -16,8 +16,10 @@ interface Post{
 }
 
 interface friends{
-  email:string;
-  f_name:string;
+  email: string;
+  f_name: string;
+  last_message: string;
+  time: string;
 }
 
 
@@ -56,16 +58,6 @@ export class ChatComponent {
   constructor(public afs: AngularFirestore) {}
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
-  // ngAfterViewChecked() {
-  //   console.log(1);
-  //   this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
-  // }
-
-  // load(){
-  //   this.loader=true;
-    
-  // }
-
   ngOnInit() {
     this.load();
     this.userlist=this.afs.collection(`users/${this.em}/Friends`);
@@ -74,8 +66,10 @@ export class ChatComponent {
       return action.map(a=> {
         const email=a.payload.doc.id;
         const f_name=a.payload.doc.data().f_name;
+        const last_message=a.payload.doc.data().last_message;
+        const time=a.payload.doc.data().time;
         return {
-          email, f_name
+          email, f_name, last_message, time
         }
       })
     }))
@@ -124,7 +118,7 @@ export class ChatComponent {
     this.loader=true;
     setTimeout(() =>{
       this.loader=false;
-    },3000)
+    },3)
   }
 
   onContactClick(friend: any){
@@ -162,13 +156,15 @@ export class ChatComponent {
     const minutes = now.getMinutes() < 3 ? ("0" + now.getMinutes()) : (now.getMinutes());
     return (month+" "+date+", "+year+", "+hours+":"+minutes);
   }
-
+  
   send(){
     if(this.msg!="" && this.msg !=null){
       const now = new Date();
       const timestamp = now.getTime().toString();
       this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
       this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em, message:this.msg, timestamp: timestamp, time: this.getTimeStamp(now)}).then();
+      this.afs.collection(`users/${this.em}/Friends`).doc(this.currentuser).update({last_message: this.msg, time: this.getTimeStamp(now)});
+      this.afs.collection(`users/${this.currentuser}/Friends`).doc(this.em).update({last_message: this.msg, time: this.getTimeStamp(now)});
       this.msg="";
     }
   }
