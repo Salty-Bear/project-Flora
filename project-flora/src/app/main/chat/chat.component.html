@@ -8,6 +8,9 @@
     <div class="friends-list">
         <div class="heading">Chats</div>
         <div class="cover">
+            <p class="error-message" *ngIf="showError">
+                Send a letter to make friends
+            </p>
             <div class="friend" *ngFor="let friend of user | async let index=index;" [attr.data-index]="index" (click)="onContactClick(friend)">
                 <div class="image">
                     <img class="ok" src="assets/pfp/pvz.jpeg" alt="">
@@ -22,7 +25,14 @@
     </div>
     
     <div class="chat-window">
-        <div class="user-info">
+        <div class="show-instruction" *ngIf="!showTextField">
+            <h4 class="instruction">
+                <span id="one">Click on a Friend</span>
+                to send and receive messages
+                <span id="two"><i class="fa-solid fa-lock"></i>All messages are end to end encrypted</span>
+            </h4>
+        </div>
+        <div class="user-info" *ngIf="showTextField">
             <!-- <div class="image">
                 <img src="assets/pfp/pvz.jpeg" alt="">
             </div> -->
@@ -31,7 +41,6 @@
                 <p class="currentUserUname">{{ currentUserUname }}</p>
             </div>
         </div>
-
         <div #toScroll *ngIf="showTextField" class="message-window">
             <div *ngFor="let message of posts | async">
                 <div *ngIf="message.email==currentuser" class="message friend-message">
@@ -46,7 +55,7 @@
         </div>
         <div *ngIf="showTextField" class="input mt-2">
             <div class="fancy-envelope"><i class="fa-solid fa-envelope"></i></div>
-            <input type="text" class="chatInput"  name="title" [(ngModel)]="msg">
+            <input type="text" class="chatInput"  name="title" [(ngModel)]="msg" (keyup.enter)="send()">
             <button class="btn btn-send btn-primary"  value="add a post" (click)="send()"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </div>

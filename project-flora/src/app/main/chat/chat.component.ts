@@ -32,6 +32,7 @@ interface friends{
 
 
 export class ChatComponent {
+  constructor(public afs: AngularFirestore) {}
   @ViewChild("toScroll") toScroll: any;
   postsCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
@@ -48,6 +49,7 @@ export class ChatComponent {
   f: string;
 
   showTextField: boolean = false;
+  showError: boolean = true;
 
   element = document.getElementsByClassName('message-window'); // Replace 'myElement' with the ID of your element
 
@@ -55,7 +57,7 @@ export class ChatComponent {
   month: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
   loader=true;
-  constructor(public afs: AngularFirestore) {}
+
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
   ngOnInit() {
@@ -64,6 +66,9 @@ export class ChatComponent {
     this.user= this.userlist.snapshotChanges()
     .pipe(map(action=>{
       return action.map(a=> {
+        if(a.payload.doc.exists) {
+          this.showError = false;
+        }
         const email=a.payload.doc.id;
         const f_name=a.payload.doc.data().f_name;
         const last_message=a.payload.doc.data().last_message;
@@ -73,7 +78,12 @@ export class ChatComponent {
         }
       })
     }))
-    console.log(this.user);
+    // this.user.subscribe(res=>{
+    //   console.log(res.length);
+    //   if(res.length==0||res.length==null) {
+    //     this.showErrorMessage=true;
+    //   }
+    // })
     // this.user.subscribe(res =>{
     //   res.forEach( a =>{
     //     this.afs.doc(`users/${a.email}`).get().subscribe(ref =>{
@@ -112,7 +122,6 @@ export class ChatComponent {
     //     }
     //   });
   }
-
 
   load(){
     this.loader=true;

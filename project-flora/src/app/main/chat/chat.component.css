@@ -28,7 +28,7 @@
 .cover {
     display: flex;
     flex-direction: column;
-    gap: 3%;
+    gap: 0.5rem;
     overflow-y: auto;
 }
 
@@ -75,6 +75,7 @@ p {
 
 .name {
     font-family: 'Tilt Neon';
+    font-weight: bolder;
 }
 
 p.last-message {
@@ -99,6 +100,29 @@ p.last-message {
 .chat-window > .name > h4, .chat-window > .name > p {
     margin: 0;
     padding: 0;
+}
+
+.show-instruction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.instruction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#two {
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    gap: 1%;
+    font-size: medium;
+    min-width: 20vw;
 }
 
 .user-info {
