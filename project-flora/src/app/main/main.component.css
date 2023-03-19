@@ -159,4 +159,12 @@ transform: scale(1.05);
 
 
 
-
+.propic{
+    position: absolute;
+    border: 2px solid red;
+    z-index: 4;
+    height: 20%;
+    width: 50%;
+    left: 25%;
+    top: 5%;
+}

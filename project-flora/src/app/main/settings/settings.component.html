@@ -33,7 +33,15 @@
                 <option>hai kuch abhi pta ni chla hai</option>
             </select>
             <br>
+            <div class="layout">
             <button type="submit" class="btn" (click)="submit()">Submit</button>
+            <div>
+                <label class="uploaderphoto" for="uploaderphoto"> Change Profile Pic  : &nbsp; </label>
+                <input class="uploader" id="uploaderphoto"  type="file" (change)="upload($event)">
+            </div>
+            
+        </div>
+            <!-- <button type="submit" class="btn" (click)="uploadimage()">Upload Image</button> -->
     </div>
     
     <div class="second">

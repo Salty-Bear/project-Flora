@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from 'src/services/login.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFireStorage} from '@angular/fire//compat/storage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 
@@ -17,7 +18,7 @@ import { map } from 'rxjs';
 
 
 export class MainComponent {
-  constructor (private loginService: LoginService,public afs: AngularFirestore) {}
+  constructor (private loginService: LoginService,public afs: AngularFirestore,private af: AngularFireStorage) {}
   usertype: any='Home';
   postsCol: AngularFirestoreCollection<{name:string}>;
   email:any;
@@ -26,8 +27,7 @@ export class MainComponent {
   lettermessage="";
   target:any;
   targetuser:any;
-
-
+  img:any;
 
   onLogOut() {
     this.loginService.logOut();
@@ -46,9 +46,18 @@ export class MainComponent {
       console.log(this.name) //LOG ENTIRE DOC
         }
       });
+      this.fetchimg();
+
       }
 
+      fetchimg(){
+        this.af.ref('users/aryamanraj123456789@gmail.com/[object File]').getDownloadURL().subscribe(url =>{
+          console.log(url);
+          this.img=url;
+          console.log(this.img);
+        });
 
+    }
 
 
 
