@@ -18,12 +18,17 @@
     flex-direction: column;
     gap: 1%;
     border-right: 1px solid black;
-    padding-right: 0%;
     min-width: 22vw;
     max-width: 22vw;
     background-color: #9DC08B;
     border-radius: 15px 0 0 15px;
     padding: 0 2% 0 2%;
+}
+
+.cover {
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
     overflow-y: auto;
 }
 
@@ -59,6 +64,8 @@
 .wrapper {
     flex-basis: calc(100%);
     padding-left: 3%;
+    min-width: 50%;
+    max-width: 50%;
 }
 
 p {
@@ -68,6 +75,12 @@ p {
 
 .name {
     font-family: 'Tilt Neon';
+}
+
+p.last-message {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .time {
@@ -191,8 +204,22 @@ input {
 }
 
 .btn-send:hover .fa-arrow-right {
-    transform: translate(50%);
+    transform: translate(20%);
     transition-duration: 250ms;
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: #9DC08B;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(100, 40%, 50%);
+    border-radius: 6px;
 }
 
 .loaderwindow{
