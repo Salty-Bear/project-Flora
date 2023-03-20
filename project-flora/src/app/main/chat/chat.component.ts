@@ -7,6 +7,7 @@ import { Observable, timeInterval } from 'rxjs';
 import { map, take } from 'rxjs';
 import { orderBy, limit } from 'firebase/firestore';
 import { EmailAuthProvider } from 'firebase/auth';
+import { AngularFireStorage} from '@angular/fire//compat/storage';
 
 interface Post{
   message: string;
@@ -32,7 +33,7 @@ interface friends{
 
 
 export class ChatComponent {
-  constructor(public afs: AngularFirestore) {}
+  constructor(public afs: AngularFirestore, private af: AngularFireStorage) {}
   @ViewChild("toScroll") toScroll: any;
   postsCol: AngularFirestoreCollection<Post>;
   posts: Observable<Post[]>;
@@ -47,6 +48,7 @@ export class ChatComponent {
   currentUserUname: string;
   messages:{message:string,email:string,timestamp:string}[]=[];
   f: string;
+  img: string;
 
   showTextField: boolean = false;
   showError: boolean = true;
@@ -73,12 +75,16 @@ export class ChatComponent {
         const f_name=a.payload.doc.data().f_name;
         const last_message=a.payload.doc.data().last_message;
         const time=a.payload.doc.data().time;
+        // this.af.ref(`users/${this.em}/[object File]`).getDownloadURL().subscribe(url =>{
+        //   this.img=url;
+        // });
         return {
           email, f_name, last_message, time
         }
       })
     }))
     this.user.subscribe(res=>{
+      // console.log(res[0]);
       if(this.flag) {
         this.loader=false;
         this.flag=false;
@@ -146,7 +152,7 @@ export class ChatComponent {
           const email=a.payload.doc.data().email;
           const timestamp=a.payload.doc.data().timestamp;
           const time=a.payload.doc.data().time;
-          console.log(a.payload.doc.data());
+          // console.log(a.payload.doc.data());
           this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
           return {message,email,timestamp,time};
         })
@@ -157,8 +163,12 @@ export class ChatComponent {
       this.currentUserUname = "@"+doc.USERNAME;
       this.showTextField = true;
     })
+    this.af.ref(`users/${friend.email}/[object File]`).getDownloadURL().subscribe(url =>{
+        this.img=url;
+    });
+    
     setTimeout(() =>{
-      console.log("1");
+      // console.log("1");
       this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
     },2000)
   }

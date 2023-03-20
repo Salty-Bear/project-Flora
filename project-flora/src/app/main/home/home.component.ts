@@ -72,20 +72,20 @@ export class HomeComponent {
 
 
   gettar(res:any){
-    console.log(res);
+    // console.log(res);
     this.target=Math.floor((Math.random()*res.length)%res.length);
     while(res[this.target].id == this.sender) {
       this.target=Math.floor((Math.random()*res.length)%res.length);
     }
     this.targetuser=res[this.target].id;
-    console.log(this.count)
-    console.log(this.targetuser)
+    // console.log(this.count)
+    // console.log(this.targetuser)
     this.afs.doc(`users/${this.em}/letters/${this.uid}`).delete();
-    alert("sucess")
+    // alert("sucess")
     if(this.count!=0) {
       this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
     }
-    console.log(this.uid);
+    // console.log(this.uid);
     this.display=false;
   }
 
@@ -118,7 +118,7 @@ show() {
     this.uid=res[0].content;
     this.afs.doc(`users/${this.em}/letters/${this.uid}`).get().subscribe( ref =>{
       if(!ref.exists) {
-        console.log("notfound")// //DOC DOES NOT EXIST
+        // console.log("notfound")// //DOC DOES NOT EXIST
       }
       else {
         this.doc = ref.data();
@@ -126,7 +126,7 @@ show() {
         this.count=this.doc.count;
         this.sender=this.doc.sender;
 
-        console.log(this.sender) //LOG ENTIRE DOC
+        // console.log(this.sender) //LOG ENTIRE DOC
       }
     })
   })

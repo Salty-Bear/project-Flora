@@ -22,10 +22,10 @@ export class AboutComponent {
   ngOnInit() {
     this.load();
     this.afs.doc(`users/${this.em}`).get().subscribe(ref => {
-      console.log(ref);
+      // console.log(ref);
       if(!ref.exists){
       
-      console.log("notfound")// //DOC DOES NOT EXIST
+      // console.log("notfound")// //DOC DOES NOT EXIST
       
       }else{
       
@@ -34,7 +34,7 @@ export class AboutComponent {
       this.name = doc.FIRST_NAME;
       this.username = "@"+doc.USERNAME;
       
-      console.log(this.name) //LOG ENTIRE DOC
+      // console.log(this.name) //LOG ENTIRE DOC
       
       }
       

@@ -59,12 +59,12 @@ export class MainComponent {
     }))
 
     this.user.pipe(take(1)).subscribe(ref =>{
-      console.log(ref);
+      // console.log(ref);
       uid=ref[0].content;
-      console.log(uid);
+      // console.log(uid);
       this.afs.doc(`users/${this.em}/letters/${uid}`).get().subscribe( ret =>{
         if(!ret.exists) {
-          console.log("notfound")// //DOC DOES NOT EXIST
+          // console.log("notfound")// //DOC DOES NOT EXIST
         }
         else {
           this.doc=ret.data();
@@ -108,7 +108,7 @@ export class MainComponent {
   ngOnInit() {
     this.afs.doc(`users/${this.em}`).get().subscribe(ref => {
       if(!ref.exists){
-      console.log("notfound")// //DOC DOES NOT EXIST
+      // console.log("notfound")// //DOC DOES NOT EXIST
       }
       else{
       const doc:any = ref.data();
@@ -116,13 +116,12 @@ export class MainComponent {
         }
       });
       this.fetchimg();
-
-      }
-
-      fetchimg(){
-        this.af.ref(`users/${this.em}/[object File]`).getDownloadURL().subscribe(url =>{
-          this.img=url;
-        });
     }
+
+  fetchimg(){
+    this.af.ref(`users/${this.em}/[object File]`).getDownloadURL().subscribe(url =>{
+      this.img=url;
+    });
   }
+}
 
