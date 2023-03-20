@@ -21,6 +21,7 @@ export class LetterComponent {
   constructor(public afs: AngularFirestore) {};
   lock=false;
   loader=true;
+  count=0;
 
 
   userlist: AngularFirestoreCollection<userlist1>;
@@ -70,7 +71,6 @@ export class LetterComponent {
 
 
   sendletter(){
-    this.lock=true;
     this.userlist = this.afs.collection('users');
     this.user = this.userlist.snapshotChanges()
       .pipe(map(actions => {
@@ -81,11 +81,11 @@ export class LetterComponent {
       }));
      this.user.subscribe(res =>
       this.gettar(res))
+    this.count++;
+    if(this.count==2) {
+      this.lock=true;
 
-  setTimeout(() => {
-    this.lock=true;
-  }, 1*60*1000);
   }
 
 }
-
+}
