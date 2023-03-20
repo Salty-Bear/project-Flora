@@ -42,7 +42,7 @@
 }
 
 .letterbutton:hover{
-    transform: translateY(-0.1rem);
+    transform: translateY(-0.2rem);
     -moz-transition: all 0.2s ease-in;
     -o-transition: all 0.2s ease-in;
     -webkit-transition: all 0.2s ease-in;

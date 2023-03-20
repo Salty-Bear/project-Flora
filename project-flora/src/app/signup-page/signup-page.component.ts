@@ -7,6 +7,7 @@ import { LoginService } from 'src/services/login.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { AngularFireStorage} from '@angular/fire//compat/storage';
 
 interface post{
   EMAIL_ADD:string;
@@ -41,13 +42,18 @@ export class SignupPageComponent {
   rePassword: string;
   object: any;
 
+
+
+
   productsRef: AngularFirestoreCollection<post>;
   posts: Observable<post[]>;
-  constructor(private loginService: LoginService,private router: Router,private http: HttpClient,private afs: AngularFirestore){
+  constructor(private loginService: LoginService,private router: Router,private http: HttpClient,private afs: AngularFirestore,private af: AngularFireStorage){
     this.productsRef = this.afs.collection<post>('users');
 
  
   }
+
+
 
 
 
@@ -63,20 +69,18 @@ export class SignupPageComponent {
       subscribe(
         respondData => {
           //making user ready for authentication
-          alert("Sign Up sucessful!!!")
           this.http.post('https://flora-fbf5b-default-rtdb.firebaseio.com/users.json',{email: this.email}).subscribe(respondData => {console.log(respondData)});
           //Creating model to add it later in the firestore
           this.model={
             EMAIL_ADD:this.email,
             FIRST_NAME:this.f_name,
             LAST_NAME:this.l_name,
-            PASSWORD:this.password,
+            PASSWORD:this.password, 
             USERNAME:this.u_name
           }
 
 
-
-          this.productsRef.doc(this.email).set(this.model).then( _ => alert("hogya send"));     //adding data to firestore
+          this.productsRef.doc(this.email).set(this.model).then( _ => alert("Signed up Successfully!!"));     //adding data to firestore
           // this.http.post('https://flora-fbf5b-default-rtdb.firebaseio.com/profiles.json',{firstName:this.f_name,lastName:this.l_name,userName:this.u_name,email: this.email,password:this.password}).subscribe(respondData => {console.log(respondData)});
           this.router.navigate(['/']);  //navigating to login page
         },

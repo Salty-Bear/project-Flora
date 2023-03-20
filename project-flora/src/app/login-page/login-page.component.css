@@ -132,3 +132,14 @@ input.ng-invalid.ng-touched{
 .logins{
     margin-top: 2%;
 }
+
+.owners{
+    color: red;
+    font-family: Tilt Neon;
+    font-weight: 700;
+    position: absolute;
+    bottom: -1%;
+    left: 43%;
+    font-style: italic;
+}
+

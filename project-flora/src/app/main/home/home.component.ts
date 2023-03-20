@@ -113,7 +113,6 @@ show() {
   //   })
   // }));
   this.user.subscribe(res =>{
-    console.log(res);
     this.uid=res[0].content;
     this.afs.doc(`users/${this.em}/letters/${this.uid}`).get().subscribe( ref =>{
       if(!ref.exists) {

@@ -24,10 +24,10 @@ export class MyLettersComponent {
   userlist: AngularFirestoreCollection<message>;
   user: Observable<message[]>;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
-  loader=true;
+  loader=false;
 
   ngOnInit(){
-    this.load();
+    //this.load();
     this.userlist = this.afs.collection(`users/${this.em}/myletters`);
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
@@ -38,7 +38,6 @@ export class MyLettersComponent {
         return { message, where };
       })
     }));
-    this.user.subscribe(res => console.log(res));
   }
 
 
