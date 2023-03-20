@@ -130,9 +130,18 @@ p.last-message {
     flex-basis: 5%;
 }
 
+.image {
+    max-width: 50%;
+}
+
+.user-info > .image {
+    max-width: 50%;
+    flex-basis: 5%;
+}
+
 .user-info > .image > img {
-    width: 30%;
-    border-radius: 50%;
+    max-width: 70%;
+    border-radius: 50%; 
 }
 
 .message-window {

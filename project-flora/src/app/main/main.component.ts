@@ -116,13 +116,12 @@ export class MainComponent {
         }
       });
       this.fetchimg();
-
-      }
-
-      fetchimg(){
-        this.af.ref(`users/${this.em}/[object File]`).getDownloadURL().subscribe(url =>{
-          this.img=url;
-        });
     }
+
+  fetchimg(){
+    this.af.ref(`users/${this.em}/[object File]`).getDownloadURL().subscribe(url =>{
+      this.img=url;
+    });
   }
+}
 
