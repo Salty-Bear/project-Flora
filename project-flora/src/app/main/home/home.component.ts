@@ -133,23 +133,24 @@ show() {
   this.display=true;
 }
 
-  getSenderFname(email: string) {
+  getSenderFname(email: string, epoch: any) {
     this.afs.doc(`users/${email}`).get().subscribe(ref => {
       const doc:any = ref.data();
-      this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: doc.FIRST_NAME});
+      this.afs.collection(`users/${this.em}/Friends`).doc(this.doc.sender).set({f_name: doc.FIRST_NAME, epoch: epoch});
     })
   }
 
-  getUserFname(email: string) {
+  getUserFname(email: string, epoch: any) {
     this.afs.doc(`users/${email}`).get().subscribe(ref => {
       const doc:any = ref.data();
-      this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: doc.FIRST_NAME});
+      this.afs.collection(`users/${this.doc.sender}/Friends`).doc(this.em).set({f_name: doc.FIRST_NAME, epoch: epoch});
     })
   }
 
   onAccept(){
-    this.getSenderFname(this.doc.sender);
-    this.getUserFname(this.em);
+    const now = new Date();
+    this.getSenderFname(this.doc.sender, now);
+    this.getUserFname(this.em, now);
     this.display=false;
     this.afs.doc(`users/${this.em}/letters/${this.uid}`).delete();
     this.lettermessage="";

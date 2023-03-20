@@ -56,16 +56,28 @@ p {
     height: 10%;
 }
 
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: #9DC08B;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(100, 40%, 50%);
+    border-radius: 6px;
+}
 
 .loaderwindow{
     min-height: 97vh;
     max-height: 100vh;
     background-color: #ABC270;
     border-radius: 15px;
+}
 
-  }
-
-  .load{
+.load{
     margin-left: 25%;
     margin-top: 1%;
-  }
+}
