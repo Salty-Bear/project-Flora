@@ -27,7 +27,9 @@ export class MyLettersComponent {
   loader: boolean=true;
   flag: boolean=true;
 
+  
   ngOnInit(){
+    this.load();
     this.userlist = this.afs.collection(`users/${this.em}/myletters`);
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
@@ -47,12 +49,12 @@ export class MyLettersComponent {
   }
 
 
-  // load(){
-  //   this.loader=true;
-  //   setTimeout(() =>{
-  //     this.loader=false;
-  //   },3000)
-  // }
+  load(){
+    this.loader=true;
+    setTimeout(() =>{
+      this.loader=false;
+    },3000)
+  }
 
 
 
