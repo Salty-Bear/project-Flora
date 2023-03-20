@@ -19,7 +19,7 @@ interface userlist1{
 
 export class LetterComponent {
   constructor(public afs: AngularFirestore) {};
-
+  lock=false;
   loader=true;
 
 
@@ -70,6 +70,7 @@ export class LetterComponent {
 
 
   sendletter(){
+    this.lock=true;
     this.userlist = this.afs.collection('users');
     this.user = this.userlist.snapshotChanges()
       .pipe(map(actions => {
@@ -78,11 +79,13 @@ export class LetterComponent {
           return { id};
         })
       }));
-
      this.user.subscribe(res =>
       this.gettar(res))
-  }
 
+  setTimeout(() => {
+    this.lock=true;
+  }, 1*60*1000);
+  }
 
 }
 
