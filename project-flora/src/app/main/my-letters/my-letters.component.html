@@ -19,8 +19,11 @@
         <div class="letters">
             <button class="btn btn-success" *ngFor="let use of user | async">
                 <div class="user-info">
-                    <p class="u-name"><img class="ok" src="assets/pfp/pvz.jpeg" alt="">@{{use.where}}</p>
-                    <p class="r-name">{{use.where}}</p>
+                    <img class="ok" src="assets/pfp/pvz.jpeg" alt=""> 
+                    <div class="content">
+                        <p id="where">@{{ use.where }}</p>
+                        <div id="message">{{ use.message }}</div>
+                    </div>
                 </div>
             </button>
         </div>

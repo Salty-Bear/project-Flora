@@ -50,6 +50,7 @@ export class ChatComponent {
 
   showTextField: boolean = false;
   showError: boolean = true;
+  flag: boolean = true;
 
   element = document.getElementsByClassName('message-window'); // Replace 'myElement' with the ID of your element
 
@@ -61,7 +62,6 @@ export class ChatComponent {
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
 
   ngOnInit() {
-    this.load();
     this.userlist=this.afs.collection(`users/${this.em}/Friends`, ref => ref.orderBy('epoch', "desc"));
     this.user= this.userlist.snapshotChanges()
     .pipe(map(action=>{
@@ -78,9 +78,12 @@ export class ChatComponent {
         }
       })
     }))
-    // this.user.subscribe(res=>{
-      
-    // })
+    this.user.subscribe(res=>{
+      if(this.flag) {
+        this.loader=false;
+        this.flag=false;
+      }
+    })
     // this.user.subscribe(res=>{
     //   console.log(res.length);
     //   if(res.length==0||res.length==null) {
@@ -126,12 +129,12 @@ export class ChatComponent {
     //   });
   }
 
-  load(){
-    this.loader=true;
-    setTimeout(() =>{
-      this.loader=false;
-    },3)
-  }
+  // load(){
+  //   this.loader=true;
+  //   setTimeout(() =>{
+  //     this.loader=false;
+  //   },3000)
+  // }
 
   onContactClick(friend: any){
     this.currentuser=friend.email;
@@ -172,10 +175,11 @@ export class ChatComponent {
   send(){
     if(this.msg!="" && this.msg !=null){
       const now = new Date();
-      this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em, message:this.msg, timestamp: now, time: this.getTimeStamp(now)}).then();
-      this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em, message:this.msg, timestamp: now, time: this.getTimeStamp(now)}).then();
-      this.afs.collection(`users/${this.em}/Friends`).doc(this.currentuser).update({last_message: this.msg, time: this.getTimeStamp(now), epoch: now});
-      this.afs.collection(`users/${this.currentuser}/Friends`).doc(this.em).update({last_message: this.msg, time: this.getTimeStamp(now), epoch: now});
+      const timeStamp = now.getTime().toString();
+      this.afs.collection(`users/${this.em}/Friends/${this.currentuser}/messages`).add({email:this.em, message:this.msg, timestamp: timeStamp, time: this.getTimeStamp(now)}).then();
+      this.afs.collection(`users/${this.currentuser}/Friends/${this.em}/messages`).add({email:this.em, message:this.msg, timestamp: timeStamp, time: this.getTimeStamp(now)}).then();
+      this.afs.collection(`users/${this.em}/Friends`).doc(this.currentuser).update({last_message: this.msg, time: this.getTimeStamp(now), epoch: timeStamp});
+      this.afs.collection(`users/${this.currentuser}/Friends`).doc(this.em).update({last_message: this.msg, time: this.getTimeStamp(now), epoch: timeStamp});
       this.msg="";
     }
   }

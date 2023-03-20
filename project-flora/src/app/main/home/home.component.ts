@@ -82,7 +82,9 @@ export class HomeComponent {
     console.log(this.targetuser)
     this.afs.doc(`users/${this.em}/letters/${this.uid}`).delete();
     alert("sucess")
-    if(this.count!=0) this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
+    if(this.count!=0) {
+      this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
+    }
     console.log(this.uid);
     this.display=false;
   }
@@ -147,7 +149,7 @@ show() {
   }
 
   onAccept(){
-    const now = new Date();
+    const now = new Date().getTime();
     this.getSenderFname(this.doc.sender, now);
     this.getUserFname(this.em, now);
     this.display=false;

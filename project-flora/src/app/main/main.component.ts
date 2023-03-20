@@ -5,6 +5,7 @@ import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AngularFireStorage} from '@angular/fire//compat/storage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
+import { take } from 'rxjs';
 
 
 interface userlist1{
@@ -39,7 +40,6 @@ export class MainComponent {
   user1: Observable<userlist1[]>;
   userlist: AngularFirestoreCollection<message>;
   user: Observable<message[]>;
-  uid:any;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
   count:number;
   sender:string;
@@ -47,6 +47,8 @@ export class MainComponent {
 
 
   gettar(res:any){
+    let uid:any;
+
     this.userlist = this.afs.collection(`users/${this.em}/letters`);
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
@@ -56,39 +58,33 @@ export class MainComponent {
       })
     }))
 
-    this.user.subscribe(res =>{
-      console.log(res);
-      this.uid=res[0].content;
-      console.log(this.uid)
-      this.afs.doc(`users/${this.em}/letters/${this.uid}`).get().subscribe( ref =>{
-        if(!ref.exists) {
+    this.user.pipe(take(1)).subscribe(ref =>{
+      console.log(ref);
+      uid=ref[0].content;
+      console.log(uid);
+      this.afs.doc(`users/${this.em}/letters/${uid}`).get().subscribe( ret =>{
+        if(!ret.exists) {
           console.log("notfound")// //DOC DOES NOT EXIST
         }
         else {
-          this.doc=ref.data();
+          this.doc=ret.data();
+          this.lettermessage = this.doc.message;
           this.sender=this.doc.sender;
           this.count=this.doc.count;
-          console.log(this.count);
-          console.log(this.sender) //LOG ENTIRE DOC
+              
+          this.target=Math.floor((Math.random()*res.length)%res.length);
+          while(res[this.target].id == this.sender) {
+            this.target=Math.floor((Math.random()*res.length)%res.length);
+          }
+          this.targetuser=res[this.target].id;
+
+          this.afs.doc(`users/${this.em}/letters/${uid}`).delete();
+          if(this.count!=0) this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
+          this.loginService.logOut();
         }
       })
     })
-    
 
-    console.log(res);
-    this.target=Math.floor((Math.random()*res.length)%res.length);
-    while(res[this.target].id == this.sender) {
-      this.target=Math.floor((Math.random()*res.length)%res.length);
-    }
-    this.targetuser=res[this.target].id;
-    console.log(this.count)
-    console.log(this.targetuser)
-    console.log(this.uid);
-    this.afs.doc(`users/${this.em}/letters/${this.uid}`).delete();
-    alert("sucess")
-    if(this.count!=0) this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
-    console.log(this.uid);
-    this.display=false;
   }
 
 
@@ -103,9 +99,8 @@ export class MainComponent {
             return { id};
           })
         }));
-       this.user1.subscribe(res =>
+       this.user1.pipe(take(1)).subscribe(res =>
         this.gettar(res))      
-    //this.loginService.logOut();
   }
   // JSON.parse(localStorage.getItem('userData') || '{}').email
   

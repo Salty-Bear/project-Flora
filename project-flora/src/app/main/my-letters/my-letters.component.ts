@@ -24,29 +24,35 @@ export class MyLettersComponent {
   userlist: AngularFirestoreCollection<message>;
   user: Observable<message[]>;
   em=JSON.parse(localStorage.getItem('userData') || '{}').email;
-  loader=false;
+  loader: boolean=true;
+  flag: boolean=true;
 
   ngOnInit(){
-    //this.load();
     this.userlist = this.afs.collection(`users/${this.em}/myletters`);
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
       return actions.map(a => {
         const message=a.payload.doc.data().message;
         const where=a.payload.doc.data().where;
-        console.log(message);
         return { message, where };
       })
     }));
+    this.user.subscribe(res => {
+      if(this.flag) {
+        this.loader=false;
+        this.flag=false;
+      }
+      console.log(res);
+    });
   }
 
 
-  load(){
-    this.loader=true;
-    setTimeout(() =>{
-      this.loader=false;
-    },3000)
-  }
+  // load(){
+  //   this.loader=true;
+  //   setTimeout(() =>{
+  //     this.loader=false;
+  //   },3000)
+  // }
 
 
 
