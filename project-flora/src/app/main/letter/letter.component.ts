@@ -18,11 +18,7 @@ interface userlist1{
 
 
 export class LetterComponent {
-  constructor(public afs: AngularFirestore){
-
-
-
-  };
+  constructor(public afs: AngularFirestore) {};
 
   loader=true;
 
@@ -65,7 +61,7 @@ export class LetterComponent {
         this.receivername=doc.USERNAME;
         console.log("ok")
         console.log(this.letter);
-        this.afs.collection(`users/${this.em}/myletters`).add({message:letterindata, where:this.receivername});
+        this.afs.collection(`users/${this.em}/myletters`).add({message: letterindata, where: this.receivername, sender: this.em});
       });
     }
     this.letter="";
@@ -88,5 +84,5 @@ export class LetterComponent {
   }
 
 
-  }
+}
 
