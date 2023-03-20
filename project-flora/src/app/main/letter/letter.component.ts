@@ -55,7 +55,7 @@ export class LetterComponent {
     if(this.letter!="" && this.letter!=null ) {
       const letterindata:any=this.letter;
       this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.letter,sender:this.em,count:5})
-      // alert("sent successfully")
+      alert("sent successfully")
 
       this.afs.doc(`users/${this.targetuser}`).get().subscribe( res =>{
         const doc:any=res.data();
