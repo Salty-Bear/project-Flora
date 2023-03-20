@@ -48,7 +48,7 @@ export class MainComponent {
 
   gettar(res:any){
     let uid:any;
-
+    this.loginService.logOut();
     this.userlist = this.afs.collection(`users/${this.em}/letters`);
     this.user = this.userlist.snapshotChanges()
     .pipe(map(actions => {
@@ -80,7 +80,7 @@ export class MainComponent {
 
           this.afs.doc(`users/${this.em}/letters/${uid}`).delete();
           if(this.count!=0) this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.lettermessage,count:(this.count-1),sender:this.sender});
-          this.loginService.logOut();
+          
         }
       })
     })
