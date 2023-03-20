@@ -134,7 +134,7 @@ input.ng-invalid.ng-touched{
 }
 
 .owners{
-    color: red;
+    color: #cfdad2;;
     font-family: Tilt Neon;
     font-weight: 700;
     position: absolute;

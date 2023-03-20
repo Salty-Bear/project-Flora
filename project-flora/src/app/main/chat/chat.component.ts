@@ -183,6 +183,13 @@ export class ChatComponent {
       this.msg="";
     }
   }
+
+
+  deletechat(){
+    console.log(this.currentuser);
+    this.afs.doc(`users/${this.em}/Friends/${this.currentuser}`).delete();
+    this.afs.doc(`users/${this.currentuser}/Friends/${this.em}`).delete();
+  }
 }
 
 

@@ -35,9 +35,9 @@
             <br>
             <div class="layout">
             <button type="submit" class="btn" (click)="submit()">Submit</button>
-            <div>
-                <label class="uploaderphoto" for="uploaderphoto"> Change Profile Pic  : &nbsp; </label>
-                <input class="uploader" id="uploaderphoto"  type="file" (change)="upload($event)">
+            <div class="uploader" >
+                <label for="uploaderphoto">Change Profile pic</label>
+                <input class="fileup" id="uploaderphoto"  type="file" (change)="upload($event)">
             </div>
             
         </div>
@@ -45,6 +45,17 @@
     </div>
     
     <div class="second">
+        <div class="instruction">
+            <h1 >Instruction</h1>
+            <p>Sign up  and choose a username that clearly represents your identity.</p>
+            <br>
+            <p>
+                <br> <b>Customize your profile:</b> <br>
+
+                Add a profile photo and  a biography .This will help other users discover your content and connect with you.
+                
+                </p>
+        </div>
         <img src="assets\Settings\wallpaper.jpg" class="img-fluid" alt="Responsive image">
     </div>
 </div>

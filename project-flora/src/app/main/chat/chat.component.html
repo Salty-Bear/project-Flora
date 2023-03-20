@@ -54,6 +54,7 @@
             </div>
         </div>
         <div *ngIf="showTextField" class="input mt-2">
+            
             <div class="fancy-envelope"><i class="fa-solid fa-envelope"></i></div>
             <input type="text" class="chatInput"  name="title" [(ngModel)]="msg" (keyup.enter)="send()">
             <button class="btn btn-send btn-primary"  value="add a post" (click)="send()"><i class="fa-solid fa-arrow-right"></i></button>

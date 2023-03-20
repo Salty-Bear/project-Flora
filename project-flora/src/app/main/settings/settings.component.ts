@@ -50,7 +50,7 @@ export class SettingsComponent {
   uploadimage(){
     console.log(this.path);
     this.af.upload(`users/${this.em}/${this.path}`,this.path);
-    alert("hogya send")
+    alert("Image was added to your pfp! reload page ");
   }
 
 

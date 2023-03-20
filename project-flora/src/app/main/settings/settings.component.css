@@ -91,8 +91,12 @@
     margin-top: 1%;
   }
 
-  .uploader::-webkit-file-upload-button {
-    padding: 40%;
+
+.fileup{
+    display: none;
+}
+
+  .uploader{
     border: 1px solid #1C6758;
     border-radius: 5px;
     padding: 1% 3% 1% 3%;
@@ -101,10 +105,11 @@
     transition: 0.4s;
   }
 
-  .uploader::-webkit-file-upload-button:hover{
+  .uploader:hover{
     background-color: white;
     color: #1C6758;
     box-shadow: 0px 0.1em 0.2em rgb(28 103 88 / 40%), 0px 0.4em 0.7em -0.1em rgb(28 103 88 / 30%), inset 0px -0.1em 0px #1c67584d;
+    transform: translateY(-0.3rem);
     transition-duration: 250ms;
   }
 
@@ -117,3 +122,16 @@
     font-family: Roboto;
     font-weight: 700;
   }
+
+.instruction{
+    position: absolute;
+    border: 2px solid red;
+    width: 30%;
+    height: 50%;
+    right: 10%;
+    top: 15%;
+    border-radius: 2%;
+    background-color: #DBE4C6;
+    font-family: Tilt Neon;
+    text-align: center;
+}
