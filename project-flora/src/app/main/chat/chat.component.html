@@ -33,12 +33,18 @@
             </h4>
         </div>
         <div class="user-info" *ngIf="showTextField">
-            <div class="image">
-                <img src="{{ img }}" alt="">
-            </div>
+            <div class="propic" title="Upload your pfp" style="background-image: url({{img}}); background-size: 90% 90%; background-position: center; background-repeat: no-repeat;"></div>
             <div class="name">
                 <h4 class="currentUserFname">{{ currentUserFname }}</h4>
                 <p class="currentUserUname">{{ currentUserUname }}</p>
+            </div>
+            <div ngbDropdown class="dropdown">
+                <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    Menu
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Delete Friend</button>
+                </div>
             </div>
         </div>
         <div #toScroll *ngIf="showTextField" class="message-window">

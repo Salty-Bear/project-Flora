@@ -85,7 +85,6 @@ export class SignupPageComponent {
           this.router.navigate(['/']);  //navigating to login page
         },
         errorMessage => {
-          console.log(errorMessage);
           this.errorMessage = errorMessage;
         }
       );

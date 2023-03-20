@@ -48,20 +48,20 @@ export class LetterComponent {
     while(res[this.target].id == this.em) {
       this.target=Math.floor(Math.random()*res.length);
     }
-    console.log(this.target);
+    // console.log(this.target);
     this.targetuser=res[this.target].id;
-    console.log(this.targetuser,this.target);
+    // console.log(this.targetuser,this.target);
     
     if(this.letter!="" && this.letter!=null ) {
       const letterindata:any=this.letter;
       this.afs.collection(`users/${this.targetuser}/letters`).add({message:this.letter,sender:this.em,count:5})
-      alert("sent successfully")
+      // alert("sent successfully")
 
       this.afs.doc(`users/${this.targetuser}`).get().subscribe( res =>{
         const doc:any=res.data();
         this.receivername=doc.USERNAME;
-        console.log("ok")
-        console.log(this.letter);
+        // console.log("ok")
+        // console.log(this.letter);
         this.afs.collection(`users/${this.em}/myletters`).add({message: letterindata, where: this.receivername, sender: this.em});
       });
     }

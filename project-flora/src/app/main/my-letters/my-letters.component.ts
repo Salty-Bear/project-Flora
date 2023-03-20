@@ -44,7 +44,7 @@ export class MyLettersComponent {
         this.loader=false;
         this.flag=false;
       }
-      console.log(res);
+      // console.log(res);
     });
   }
 

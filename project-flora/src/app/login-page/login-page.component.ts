@@ -31,12 +31,12 @@ export class LoginPageComponent {
     this.loginService.login(email, password).
     subscribe(
       resData => {
-        console.log(resData);
+        // console.log(resData);
         this.errorMessage=null;
         this.router.navigate(['/main']);
       },
       errorMessage => {
-        console.log(errorMessage);
+        // console.log(errorMessage);
         this.errorMessage = errorMessage;
       }
     );

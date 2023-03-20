@@ -84,7 +84,7 @@ export class ChatComponent {
       })
     }))
     this.user.subscribe(res=>{
-      console.log(res[0]);
+      // console.log(res[0]);
       if(this.flag) {
         this.loader=false;
         this.flag=false;
@@ -152,7 +152,7 @@ export class ChatComponent {
           const email=a.payload.doc.data().email;
           const timestamp=a.payload.doc.data().timestamp;
           const time=a.payload.doc.data().time;
-          console.log(a.payload.doc.data());
+          // console.log(a.payload.doc.data());
           this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
           return {message,email,timestamp,time};
         })
@@ -168,7 +168,7 @@ export class ChatComponent {
     });
     
     setTimeout(() =>{
-      console.log("1");
+      // console.log("1");
       this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
     },2000)
   }
