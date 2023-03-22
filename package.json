@@ -23,10 +23,12 @@
     "@popperjs/core": "^2.11.6",
     "@reactivex/rxjs": "^6.6.7",
     "bootstrap": "^5.2.3",
-    "firebase": "^9.17.1",
+    "firebase": "^9.18.0",
     "howler": "^2.2.3",
+    "ng": "^0.0.0",
     "rxjs": "~7.8.0",
     "rxjs-compat": "^6.6.7",
+    "tools": "^0.0.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
