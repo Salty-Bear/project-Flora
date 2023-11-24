@@ -75,9 +75,6 @@ export class ChatComponent {
         const f_name=a.payload.doc.data().f_name;
         const last_message=a.payload.doc.data().last_message;
         const time=a.payload.doc.data().time;
-        // this.af.ref(`users/${this.em}/[object File]`).getDownloadURL().subscribe(url =>{
-        //   this.img=url;
-        // });
         return {
           email, f_name, last_message, time
         }
@@ -118,7 +115,6 @@ export class ChatComponent {
     });
     
     setTimeout(() =>{
-      // console.log("1");
       this.toScroll.nativeElement.scrollTop = this.toScroll.nativeElement.scrollHeight;
     },2000)
   }
@@ -153,10 +149,4 @@ export class ChatComponent {
 }
 
 
-
-
-  // handleSubmit(event){
-  //   if (event.keyCode === 13) {
-  //     this.send();
-  //   }
   
