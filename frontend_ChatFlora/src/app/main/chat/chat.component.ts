@@ -90,57 +90,7 @@ export class ChatComponent {
         this.flag=false;
       }
     })
-    // this.user.subscribe(res=>{
-    //   console.log(res.length);
-    //   if(res.length==0||res.length==null) {
-    //     this.showErrorMessage=true;
-    //   }
-    // })
-    // this.user.subscribe(res =>{
-    //   res.forEach( a =>{
-    //     this.afs.doc(`users/${a.email}`).get().subscribe(ref =>{
-    //       if(!ref.exists){
-    //         console.log("notfound")// //DOC DOES NOT EXIST
-    //       }
-    //       else{
-    //         const doc:any = ref.data();
-    //         this.friends.push({email:a.email,f_name:doc.FIRST_NAME})
-    //       }
-          
-    //   })
-    //   }
-
-    //   )
-    //  })
-    // console.log(this.friends);
-
-
-
-
-
-    // this.afs.doc(`users/${this.em}/Friends/${this.id}/`).get().subscribe(ref => {
-    //   console.log(ref);
-    //   if(!ref.exists){
-      
-    //     console.log("notfound")// //DOC DOES NOT EXIST
-        
-    //     }else{
-        
-    //     this.posts = ref.data();
-
-    //     console.log("hello")
-    //     console.log(this.posts) //LOG ENTIRE DOC
-        
-    //     }
-    //   });
   }
-
-  // load(){
-  //   this.loader=true;
-  //   setTimeout(() =>{
-  //     this.loader=false;
-  //   },3000)
-  // }
 
   onContactClick(friend: any){
     this.currentuser=friend.email;
